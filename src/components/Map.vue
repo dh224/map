@@ -123,7 +123,7 @@ export default {
       ],
       paths: [],
       startingPoint: {},
-      peopleGra: null,
+      peopleGra: [],
       simpleMarkerSymbol: {
         type: "simple-marker",
         color: [226, 119, 40], // Orange
@@ -134,11 +134,12 @@ export default {
       },
       moving: null,
       moveLayer: null,
+      peopleMove: [],
       // 移动图层
     };
   },
   created() {
-    const pointnumbers = 2; // 生成的路径数量
+    const pointnumbers = 20; // 生成的路径数量
     for (let i = 0; i < pointnumbers; i++) {
       this.getPaths(this.positions);
     }
@@ -169,7 +170,10 @@ export default {
       view.on("click", function (e) {
         console.info(e.mapPoint);
         tempthis.getLongPath();
-        tempthis.drawPoint(0,1)
+        tempthis.initAllPoints();
+        tempthis.updateGraphic();
+
+        // tempthis.drawPoint(0, 1);
         // var startNum = 0; // eslint-disable-line no-unused-vars
         // var endNum = 0; // eslint-disable-line no-unused-vars
         // if (tempthis.moving != undefined) {
@@ -199,10 +203,19 @@ export default {
               type: "polyline",
               paths: tempthis.paths[i][j],
             };
-
+            const popupTemplate = {
+              title: "{Name}",
+              content: "{Description}",
+            };
+            const attributes = {
+              Name: "这是第" + i + "个",
+              Description: "TODO:详细信息",
+            };
             const polylineGraphic = new Graphic({
               geometry: polyline,
               symbol: simpleLineSymbolA,
+              attributes: attributes,
+              popupTemplate: popupTemplate,
             });
             graphicsLayer.add(polylineGraphic);
             // lineGraphics.push(polylineGraphic)
@@ -224,11 +237,10 @@ export default {
 
       map.add(graphicsLayer);
 
-
-      this.peopleGra = new Graphic({
-        geometry: this.startingPoint,
-        symbol: this.simpleMarkerSymbol,
-      });
+      // this.peopleGra = new Graphic({
+      //   geometry: this.startingPoint,
+      //   symbol: this.simpleMarkerSymbol,
+      // });
       let polyline = {
         type: "polyline", // autocasts as new Polyline()
         paths: this.paths[5],
@@ -248,7 +260,7 @@ export default {
         id: "moveLayer",
       });
       console.log(this.moveLayer);
-      this.moveLayer.add(this.peopleGra);
+      // this.moveLayer.add(this.peopleGra);
       //动态图
       // var startS = {
       //       type: 'picture-marker',
@@ -256,13 +268,138 @@ export default {
       //       width: '48px',
       //       height: '48px'
       // }
-      this.moveLayer.add(
-        new Graphic({
-          geometry: this.peopleGra.geometry,
-          symbol: this.peopleSymbol,
-        })
-      );
+      // this.moveLayer.add(
+      //   new Graphic({
+      //     geometry: this.peopleGra.geometry,
+      //     symbol: this.peopleSymbol,
+      //   })
+      // );
       map.add(this.moveLayer);
+    },
+    initAllPoints() {
+      for (let i = 0; i < this.longPath.length; i++) {
+        this.peopleMove.push({
+          start: 0,
+          end: 1,
+          PathLen: this.longPath[i].length,
+        });
+      }
+      for (let i = 0; i < this.longPath.length; i++) {
+        this.peopleGra.push(
+          new Graphic({
+            geometry: {
+              type: "point",
+              longitude: this.longPath[i][0][0],
+              latitude: this.longPath[i][1][1],
+            },
+            symbol: this.simpleMarkerSymbol,
+          })
+        );
+      }
+      console.log(this.peopleMove);
+    },
+    updateGraphic() {
+      this.moving = setInterval(() => {
+        this.moveLayer.removeAll();
+        this.updateAllPoint();
+        for (let i = 0; i < this.longPath.length; i++) {
+          this.moveLayer.add(this.peopleGra[i]);
+        }
+        //TODO:update all point
+        //TODO:draw all point
+      }, 60);
+    },
+    updateAllPoint() {
+      for (let i = 0; i < this.longPath.length; i++) {
+        if (this.peopleMove[i].end >= this.longPath[i].length) {
+          continue;
+        }
+        var startX = this.longPath[i][this.peopleMove[i].start][0];
+        var startY = this.longPath[i][this.peopleMove[i].start][1];
+        var endX = this.longPath[i][this.peopleMove[i].end][0];
+        var endY = this.longPath[i][this.peopleMove[i].end][1];
+        var p = (endX - startX) / (endY - startY);
+        var v = 0.0005;
+        if (startX == endX && startY == endY) {
+          // this.peopleGra[i].geometry.longitude = endX;
+          // this.peopleGra[i].geometry.latitude = endY;
+          this.peopleGra[i] = new Graphic({
+            geometry: {
+              type: "point",
+              longitude: endX,
+              latitude: endY,
+            },
+            symbol: this.simpleMarkerSymbol,
+          });
+          this.peopleMove[i].end++;
+          this.peopleMove[i].start++;
+          console.log(
+            "有两个相同的点，更新位置" +
+              this.peopleGra[i].geometry.longitude +
+              "  " +
+              this.peopleGra[i].geometry.latitude
+          );
+        } else {
+          var newX, newY;
+          if (Math.abs(p) == Number.POSITIVE_INFINITY) {
+            endY > startY
+              ? (newY = this.peopleGra[i].geometry.latitude + v)
+              : (newY = this.peopleGra[i].geometry.latitude - v);
+            newX = this.peopleGra[i].geometry.longitude;
+          } else {
+            if (endX < startX) {
+              newX =
+                this.peopleGra[i].geometry.longitude - (1 / Math.sqrt(1 + p * p)) * v;
+              newY = this.peopleGra[i].geometry.latitude - (p / Math.sqrt(1 + p * p)) * v;
+            } else {
+              newX =
+                this.peopleGra[i].geometry.longitude + (1 / Math.sqrt(1 + p * p)) * v;
+              newY = this.peopleGra[i].geometry.latitude + (p / Math.sqrt(1 + p * p)) * v;
+            }
+          }
+          if (
+            (this.peopleGra[i].geometry.longitude - endX) * (newX - endX) <= 0 ||
+            (this.peopleGra[i].geometry.latitude - endY) * (newY - endY) <= 0
+          ) {
+            // this.peopleGra[i].geometry.longitude = endX;
+            // this.peopleGra[i].geometry.latitude = endY;
+            //上面的两行不知为何不起作用，一定要新建graphic才可以
+            this.peopleGra[i] = new Graphic({
+              geometry: {
+                type: "point",
+                longitude: endX,
+                latitude: endY,
+              },
+              symbol: this.simpleMarkerSymbol,
+            });
+            this.peopleMove[i].end++;
+            this.peopleMove[i].start++;
+            console.log(
+              "到达第二段位置，更新位置" +
+                this.peopleGra[i].geometry.longitude +
+                "  " +
+                this.peopleGra[i].geometry.latitude
+            );
+          } else {
+            // this.peopleGra[i].geometry.longitude = newX;
+            // this.peopleGra[i].geometry.latitude = newY;
+            this.peopleGra[i] = new Graphic({
+              geometry: {
+                type: "point",
+                longitude: newX,
+                latitude: newY,
+              },
+              symbol: this.simpleMarkerSymbol,
+            });
+            console.log(
+              "尚未到达第二段位置，更新位置" +
+                this.peopleGra[i].geometry.longitude +
+                "  " +
+                this.peopleGra[i].geometry.latitude
+            );
+          }
+        }
+      }
     },
     drawPoint(start, end) {
       var startX = this.longPath[0][start][0];
@@ -270,12 +407,11 @@ export default {
       var endX = this.longPath[0][end][0];
       var endY = this.longPath[0][end][1];
       var pathLen = this.longPath[0].length;
-      var p = (endY - startY) / (endX- startX);
+      var p = (endY - startY) / (endX - startX);
       var v = 0.0005;
       if (end < pathLen) {
         if (startX == endX && startY == endY) {
-          this.drawPoint(start+1, end+1);
-          
+          this.drawPoint(start + 1, end + 1);
         } else {
           this.peopleGra = new Graphic({
             geometry: {
@@ -293,7 +429,7 @@ export default {
             if (Math.abs(p) == Number.POSITIVE_INFINITY) {
               endY > startY
                 ? (newY = this.peopleGra.geometry.latitude + v)
-                : (newY = this.peopleGra.geometry.latitude - v)
+                : (newY = this.peopleGra.geometry.latitude - v);
               newX = this.peopleGra.geometry.longitude;
             } else {
               if (endX < startX) {
@@ -304,17 +440,18 @@ export default {
                 newY = this.peopleGra.geometry.latitude + (p / Math.sqrt(1 + p * p)) * v;
               }
             }
-            
+
             if (
               (this.peopleGra.geometry.longitude - endX) * (newX - endX) < 0 ||
-              (this.peopleGra.geometry.latitude - endY) * (newY - endY) < 0 || (Math.abs(this.peopleGra.geometry.longitude - endX) <= v && Math.abs(this.peopleGra.geometry.latitude - endY) <= v)
-              
+              (this.peopleGra.geometry.latitude - endY) * (newY - endY) < 0 ||
+              (Math.abs(this.peopleGra.geometry.longitude - endX) <= v &&
+                Math.abs(this.peopleGra.geometry.latitude - endY) <= v)
             ) {
               this.peopleGra.geometry.longitude = endX;
               this.peopleGra.geometry.latitude = endY;
-              console.log("add graphic  " + end)
+              console.log("add graphic  " + end);
               this.moveLayer.removeAll();
-              this.moveLayer.add(this.peopleGra)
+              this.moveLayer.add(this.peopleGra);
               clearInterval(moving);
               startNum++;
               endNum++;
@@ -323,7 +460,7 @@ export default {
                 this.drawPoint(startNum, endNum);
               }
             } else {
-// debugger;
+              // debugger;
               this.peopleGra = new Graphic({
                 geometry: {
                   type: "point",
@@ -332,9 +469,9 @@ export default {
                 },
                 symbol: this.simpleMarkerSymbol,
               });
-              console.log("add graphic else " + end)
+              console.log("add graphic else " + end);
               this.moveLayer.removeAll();
-              this.moveLayer.add(this.peopleGra)
+              this.moveLayer.add(this.peopleGra);
             }
           }, 50);
         }
@@ -350,7 +487,6 @@ export default {
             var tempa = new Array();
             tempa.push(this.paths[i][j][k][0]);
             tempa.push(this.paths[i][j][k][1]);
-            console.log(tempa);
             this.longPath[i].push(tempa);
           }
         }
