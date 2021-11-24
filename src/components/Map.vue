@@ -9,6 +9,7 @@ import Graphic from "@arcgis/core/Graphic";
 import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
 import * as echarts from "echarts"; // eslint-disable-line no-unused-vars
 import axios from "axios";
+import { Search, Edit, Check, Message, Star, Delete } from "@element-plus/icons";
 var tempthis = null;
 export default {
   name: "Map",
@@ -173,7 +174,7 @@ export default {
     };
   },
   created() {
-    const pointnumbers = 15; // 生成的路径数量
+    const pointnumbers = 2; // 生成的路径数量
     for (let i = 0; i < pointnumbers; i++) {
       this.getPaths(this.positions);
     }
@@ -221,7 +222,7 @@ export default {
         basemap: "",
       });
 
-      const graphicsLayer = new GraphicsLayer();
+      const PathsGraphicesLayer = new GraphicsLayer();
       // start: [82.44588962665374, 46.88118885250511]  end :[82.48398118522127,46.88761013863202]
       var view = new MapView({
         container: "viewDiv",
@@ -231,10 +232,9 @@ export default {
       });
       view.on("click", function (e) {
         console.info(e.mapPoint);
-        tempthis.getLongPath();
-        tempthis.initAllPoints();
+        // tempthis.initAllPoints();
 
-        tempthis.updateGraphic();
+        // tempthis.updateGraphic();
         // tempthis.drawPoint(0, 1);
         // var startNum = 0; // eslint-disable-line no-unused-vars
         // var endNum = 0; // eslint-disable-line no-unused-vars
@@ -250,8 +250,40 @@ export default {
         // console.log(tempthis.startingPoint);
         // tempthis.move(0, 1);
         //生成50条路径
-        console.log(tempthis.paths);
-        for (let i = 0; i < tempthis.paths.length; i++) {
+
+        // for (let i = 0; i < 1; i++) {
+        //   //每条完整路径
+        //   for (let j = 0; j < tempthis.paths[i].length; j++) {
+        //     //每条分段路径
+        //   }
+        // }
+      });
+      console.info(view);
+      this.map = map;
+      // 加载高德地图
+      var gdLayer = this.loadGdMapLayer();
+      view.map.layers.add(gdLayer);
+      this.view = view;
+      map.add(PathsGraphicesLayer);
+
+      var startBtn = document.getElementById("startBtn");
+      var pauseBtn = document.getElementById("pauseBtn");
+      var showPathBtn = document.getElementById("showPathBtn");
+      var disPathBtn = document.getElementById("disPathBtn");
+      this.view.ui.add(startBtn, "top-right");
+      this.view.ui.add(pauseBtn, "top-right");
+      this.view.ui.add(showPathBtn, "top-right");
+      this.view.ui.add(disPathBtn, "top-right");
+
+      startBtn.onclick = function () {
+        tempthis.initAllPoints();
+        tempthis.updateGraphic();
+      };
+      pauseBtn.onclick = function () {
+        clearInterval(tempthis.moving);
+      };
+      showPathBtn.onclick = function () {
+        for (let i = 0; i < tempthis.longPath.length; i++) {
           //生成随机颜色路径
           // let R = Math.floor(Math.random() * 255);
           // let G = Math.floor(Math.random() * 255);
@@ -275,63 +307,51 @@ export default {
               width: 2,
             };
           }
-          for (let j = 0; j < tempthis.paths[i].length; j++) {
-            const polyline = {
-              type: "polyline",
-              paths: tempthis.paths[i][j],
-            };
-            const popupTemplate = {
-              title: "{Name}",
-              content: "{Description}",
-            };
-            const attributes = {
-              Name: "这是第" + i + "个",
-              Description: "TODO:详细信息",
-            };
-            const polylineGraphic = new Graphic({
-              geometry: polyline,
-              symbol: simpleLineSymbolA,
-              attributes: attributes,
-              popupTemplate: popupTemplate,
-            });
-            graphicsLayer.add(polylineGraphic);
-            // lineGraphics.push(polylineGraphic)
-          }
+          const polyline = {
+            type: "polyline",
+            paths: tempthis.longPath[i],
+          };
+          const popupTemplate = {
+            title: "{Name}",
+            content: "{Description}",
+          };
+          const attributes = {
+            Name: "这是第" + i + "个",
+            Description: "TODO:详细信息",
+          };
+          const polylineGraphic = new Graphic({
+            geometry: polyline,
+            symbol: simpleLineSymbolA,
+            attributes: attributes,
+            popupTemplate: popupTemplate,
+          });
+          PathsGraphicesLayer.add(polylineGraphic);
+          // lineGraphics.push(polylineGraphic)
         }
-        // for (let i = 0; i < 1; i++) {
-        //   //每条完整路径
-        //   for (let j = 0; j < tempthis.paths[i].length; j++) {
-        //     //每条分段路径
-        //   }
-        // }
-      });
-      console.info(view);
-      this.map = map;
-      // 加载高德地图
-      var gdLayer = this.loadGdMapLayer();
-      view.map.layers.add(gdLayer);
-      this.view = view;
+      };
 
-      map.add(graphicsLayer);
+      disPathBtn.onclick = function () {
+        PathsGraphicesLayer.removeAll();
+      };
 
       // this.peopleGra = new Graphic({
       //   geometry: this.startingPoint,
       //   symbol: this.simpleMarkerSymbol,
       // });
-      let polyline = {
-        type: "polyline", // autocasts as new Polyline()
-        paths: this.paths[5],
-      };
-      let lineSymbol = {
-        type: "simple-line", // autocasts as SimpleLineSymbol()
-        color: [226, 119, 40],
-        width: 2,
-      };
-      var polylineGraphic = new Graphic({
-        geometry: polyline,
-        symbol: lineSymbol,
-      });
-      graphicsLayer.add(polylineGraphic);
+      // let polyline = {
+      //   type: "polyline", // autocasts as new Polyline()
+      //   paths: this.paths[5],
+      // };
+      // let lineSymbol = {
+      //   type: "simple-line", // autocasts as SimpleLineSymbol()
+      //   color: [226, 119, 40],
+      //   width: 2,
+      // };
+      // var polylineGraphic = new Graphic({
+      //   geometry: polyline,
+      //   symbol: lineSymbol,
+      // });
+      // graphicsLayer.add(polylineGraphic);
 
       this.moveLayer = new GraphicsLayer({
         id: "moveLayer",
@@ -406,8 +426,6 @@ export default {
         for (let i = 0; i < this.longPath.length; i++) {
           this.moveLayer.add(this.peopleGra[i]);
         }
-        //TODO:update all point
-        //TODO:draw all point
       }, 100);
     },
     updateStatus() {
@@ -615,6 +633,7 @@ export default {
       }
     },
     getLongPath() {
+      // 用来将获取到的路径整合到一起 已废弃
       let pathsLen = this.paths.length;
       for (let i = 0; i < pathsLen; i++) {
         this.longPath[i] = new Array();
@@ -701,6 +720,18 @@ export default {
             // })
             // lineGraphics.push(polylineGraphic)
           });
+          console.log(temppaths);
+
+          var templongpath = new Array();
+          for (let j = 0; j < temppaths.length; j++) {
+            for (let k = 0; k < temppaths[j].length; k++) {
+              var tempa = new Array();
+              tempa.push(temppaths[j][k][0]);
+              tempa.push(temppaths[j][k][1]);
+              templongpath.push(tempa);
+            }
+          }
+          this.longPath.push(templongpath);
           // lineGraphics.forEach(ele =>{
           //   graphicsLayer.add(ele)
           // })
@@ -708,7 +739,8 @@ export default {
         .catch((err) => {
           console.log(err);
         });
-      this.paths.push(temppaths);
+      //使用this.longpath替代this.paths
+      // this.paths.push(temppaths);
     },
     drawPath(simpleLineSymbol, path, graphicsLayer) {
       const polyline = {
@@ -729,6 +761,10 @@ export default {
 <template>
   <div class="map">
     <div id="viewDiv" style="width: 70%; height: 80%; float: left"></div>
+    <el-button  id="startBtn">开始</el-button>
+    <el-button  id="pauseBtn">停止</el-button>
+    <el-button  id="showPathBtn">显示路径</el-button>
+    <el-button  id="disPathBtn">隐藏路径</el-button>
   </div>
   <div
     id="myChart"

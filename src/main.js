@@ -2,11 +2,9 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import * as echarts from 'echarts'
 import ElementPlus from 'element-plus'
-// 默认element-plus 主题
 import 'element-plus/dist/index.css'
+// 默认element-plus 主题
 
-
-
-createApp(App).mount('#app')
-app.config.globalProperties.$echarts = echarts
-app.use(ElementPlus).use(store).use(router).mount('#app')
+const app = createApp(App)
+app.use(ElementPlus)
+app.mount('#app')
