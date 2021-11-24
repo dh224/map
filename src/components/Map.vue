@@ -124,14 +124,48 @@ export default {
       paths: [],
       startingPoint: {},
       peopleGra: [],
-      simpleMarkerSymbol: {
-        type: "simple-marker",
-        color: [226, 119, 40], // Orange
-        outline: {
-          color: [255, 255, 255], // White
-          width: 2,
+      simpleMarkerSymbol: [
+        {
+          type: "simple-marker",
+          color: [192, 192, 192], // grey
+          outline: {
+            color: [255, 255, 255], // White
+            width: 2,
+          },
         },
-      },
+        {
+          type: "simple-marker",
+          color: [255, 192, 203], // pink level 2
+          outline: {
+            color: [255, 255, 255], // White
+            width: 2,
+          },
+        },
+        {
+          type: "simple-marker",
+          color: [250, 128, 114], //
+          outline: {
+            color: [255, 255, 255], // White
+            width: 2,
+          },
+        },
+        {
+          type: "simple-marker",
+          color: [255, 0, 255], // grey level 4
+          outline: {
+            color: [255, 255, 255], // White
+            width: 2,
+          },
+        },
+        {
+          type: "simple-marker",
+          color: [255, 0, 0], // grey level 5
+          outline: {
+            color: [255, 255, 255], // White
+            width: 2,
+          },
+        },
+      ],
       moving: null,
       moveLayer: null,
       peopleMove: [],
@@ -139,7 +173,7 @@ export default {
     };
   },
   created() {
-    const pointnumbers = 20; // 生成的路径数量
+    const pointnumbers = 15; // 生成的路径数量
     for (let i = 0; i < pointnumbers; i++) {
       this.getPaths(this.positions);
     }
@@ -148,31 +182,59 @@ export default {
   },
   mounted() {
     this.initMap();
+
+    // 基于准备好的dom，初始化echarts实例
+    // 基于准备好的dom，初始化echarts实例
+    //   var myChart = this.$echarts.init(document.getElementById("myChart"));
+    //   // 绘制图表
+    //   myChart.setOption({
+    //     title: {
+    //       text: "不同风险等级的密接人数",
+    //     },
+    // xAxis: {
+    //   type: 'category',
+    //   data: ['Ⅰ级', 'Ⅱ级', 'Ⅲ级', 'Ⅳ级', 'Ⅴ级',],
+    //   axisLabel:{
+    //     inside:false,
+    //     textStyle:{
+    //       color:'#000',
+    //       fontSize:'28',
+    //       itemSize:'28',
+    //     }
+    //   }
+    // },
+    // yAxis: {
+    //   type: 'value'
+    // },
+    // series: [
+    //   {
+    //     data: [11,22 ,96 ,199 , 859],
+    //     type: 'line',
+    //     smooth: true
+    //   }
+    // ]
+    //   });
   },
   methods: {
     initMap() {
       var map = new Map({
         basemap: "",
       });
-      const simpleLineSymbol = {
-        type: "simple-line",
-        color: [226, 119, 40], // Orange
-        width: 3,
-      };
+
       const graphicsLayer = new GraphicsLayer();
       // start: [82.44588962665374, 46.88118885250511]  end :[82.48398118522127,46.88761013863202]
       var view = new MapView({
         container: "viewDiv",
         map: map,
-        zoom: 15,
+        zoom: 14,
         center: [86.05775587825876, 44.30152194422269], // longitude, latitude
       });
       view.on("click", function (e) {
         console.info(e.mapPoint);
         tempthis.getLongPath();
         tempthis.initAllPoints();
-        tempthis.updateGraphic();
 
+        tempthis.updateGraphic();
         // tempthis.drawPoint(0, 1);
         // var startNum = 0; // eslint-disable-line no-unused-vars
         // var endNum = 0; // eslint-disable-line no-unused-vars
@@ -190,14 +252,29 @@ export default {
         //生成50条路径
         console.log(tempthis.paths);
         for (let i = 0; i < tempthis.paths.length; i++) {
-          let R = Math.floor(Math.random() * 255);
-          let G = Math.floor(Math.random() * 255);
-          let B = Math.floor(Math.random() * 255);
-          const simpleLineSymbolA = {
-            type: "simple-line",
-            color: [R, G, B], // Orange
-            width: 3,
-          };
+          //生成随机颜色路径
+          // let R = Math.floor(Math.random() * 255);
+          // let G = Math.floor(Math.random() * 255);
+          // let B = Math.floor(Math.random() * 255);
+          // const simpleLineSymbolA = {
+          //   type: "simple-line",
+          //   color: [R, G, B],
+          //   width: 3,
+          // };
+          var simpleLineSymbolA = null;
+          if (i == 0) {
+            simpleLineSymbolA = {
+              type: "simple-line",
+              color: [255, 0, 0],
+              width: 3,
+            };
+          } else {
+            simpleLineSymbolA = {
+              type: "simple-line",
+              color: [192, 192, 192],
+              width: 2,
+            };
+          }
           for (let j = 0; j < tempthis.paths[i].length; j++) {
             const polyline = {
               type: "polyline",
@@ -278,23 +355,46 @@ export default {
     },
     initAllPoints() {
       for (let i = 0; i < this.longPath.length; i++) {
-        this.peopleMove.push({
-          start: 0,
-          end: 1,
-          PathLen: this.longPath[i].length,
-        });
+        if (i == 0) {
+          this.peopleMove.push({
+            start: 0,
+            end: 1,
+            PathLen: this.longPath[i].length,
+            stat: 4,
+          });
+        } else {
+          this.peopleMove.push({
+            start: 0,
+            end: 1,
+            PathLen: this.longPath[i].length,
+            stat: 0,
+          });
+        }
       }
       for (let i = 0; i < this.longPath.length; i++) {
-        this.peopleGra.push(
-          new Graphic({
-            geometry: {
-              type: "point",
-              longitude: this.longPath[i][0][0],
-              latitude: this.longPath[i][1][1],
-            },
-            symbol: this.simpleMarkerSymbol,
-          })
-        );
+        if (i == 0) {
+          this.peopleGra.push(
+            new Graphic({
+              geometry: {
+                type: "point",
+                longitude: this.longPath[0][0][0],
+                latitude: this.longPath[0][1][1],
+              },
+              symbol: this.simpleMarkerSymbol[4],
+            })
+          );
+        } else {
+          this.peopleGra.push(
+            new Graphic({
+              geometry: {
+                type: "point",
+                longitude: this.longPath[i][0][0],
+                latitude: this.longPath[i][1][1],
+              },
+              symbol: this.simpleMarkerSymbol[0],
+            })
+          );
+        }
       }
       console.log(this.peopleMove);
     },
@@ -302,16 +402,52 @@ export default {
       this.moving = setInterval(() => {
         this.moveLayer.removeAll();
         this.updateAllPoint();
+        this.updateStatus();
         for (let i = 0; i < this.longPath.length; i++) {
           this.moveLayer.add(this.peopleGra[i]);
         }
         //TODO:update all point
         //TODO:draw all point
-      }, 60);
+      }, 100);
+    },
+    updateStatus() {
+      for (let i = 0; i < this.longPath.length; i++) {
+        for (let j = 1; j < this.longPath.length; j++) {
+          if (this.peopleMove[i].stat >= 3 && this.peopleMove[j].stat < 3) {
+            if (i != j) {
+              if (
+                0.006 >=
+                  Math.sqrt(
+                    (this.peopleGra[i].geometry.longitude -
+                      this.peopleGra[j].geometry.longitude) *
+                      (this.peopleGra[i].geometry.longitude -
+                        this.peopleGra[j].geometry.longitude) +
+                      (this.peopleGra[i].geometry.latitude -
+                        this.peopleGra[j].geometry.latitude) *
+                        (this.peopleGra[i].geometry.latitude -
+                          this.peopleGra[j].geometry.latitude)
+                  ) &&
+                Math.floor(Math.random() * 30) >= 22 // 用以减慢传染速度
+              ) {
+                this.peopleMove[j].stat++;
+                console.log("增加了传染者" + this.peopleMove[j].stat);
+              }
+            }
+          }
+        }
+      }
     },
     updateAllPoint() {
       for (let i = 0; i < this.longPath.length; i++) {
         if (this.peopleMove[i].end >= this.longPath[i].length) {
+          this.peopleGra[i] = new Graphic({
+            geometry: {
+              type: "point",
+              longitude: this.peopleGra[i].geometry.longitude,
+              latitude: this.peopleGra[i].geometry.latitude,
+            },
+            symbol: this.simpleMarkerSymbol[this.peopleMove[i].stat],
+          });
           continue;
         }
         var startX = this.longPath[i][this.peopleMove[i].start][0];
@@ -326,19 +462,19 @@ export default {
           this.peopleGra[i] = new Graphic({
             geometry: {
               type: "point",
-              longitude: endX,
-              latitude: endY,
+              longitude: this.peopleGra[i].geometry.longitude,
+              latitude: this.peopleGra[i].geometry.latitude,
             },
-            symbol: this.simpleMarkerSymbol,
+            symbol: this.simpleMarkerSymbol[this.peopleMove[i].stat],
           });
           this.peopleMove[i].end++;
           this.peopleMove[i].start++;
-          console.log(
-            "有两个相同的点，更新位置" +
-              this.peopleGra[i].geometry.longitude +
-              "  " +
-              this.peopleGra[i].geometry.latitude
-          );
+          // console.log(
+          //   "有两个相同的点，更新位置" +
+          //     this.peopleGra[i].geometry.longitude +
+          //     "  " +
+          //     this.peopleGra[i].geometry.latitude
+          // );
         } else {
           var newX, newY;
           if (Math.abs(p) == Number.POSITIVE_INFINITY) {
@@ -370,16 +506,16 @@ export default {
                 longitude: endX,
                 latitude: endY,
               },
-              symbol: this.simpleMarkerSymbol,
+              symbol: this.simpleMarkerSymbol[this.peopleMove[i].stat],
             });
             this.peopleMove[i].end++;
             this.peopleMove[i].start++;
-            console.log(
-              "到达第二段位置，更新位置" +
-                this.peopleGra[i].geometry.longitude +
-                "  " +
-                this.peopleGra[i].geometry.latitude
-            );
+            // console.log(
+            //   "到达第二段位置，更新位置" +
+            //     this.peopleGra[i].geometry.longitude +
+            //     "  " +
+            //     this.peopleGra[i].geometry.latitude
+            // );
           } else {
             // this.peopleGra[i].geometry.longitude = newX;
             // this.peopleGra[i].geometry.latitude = newY;
@@ -389,19 +525,20 @@ export default {
                 longitude: newX,
                 latitude: newY,
               },
-              symbol: this.simpleMarkerSymbol,
+              symbol: this.simpleMarkerSymbol[this.peopleMove[i].stat],
             });
-            console.log(
-              "尚未到达第二段位置，更新位置" +
-                this.peopleGra[i].geometry.longitude +
-                "  " +
-                this.peopleGra[i].geometry.latitude
-            );
+            // console.log(
+            //   "尚未到达第二段位置，更新位置" +
+            //     this.peopleGra[i].geometry.longitude +
+            //     "  " +
+            //     this.peopleGra[i].geometry.latitude
+            // );
           }
         }
       }
     },
     drawPoint(start, end) {
+      // 已废弃
       var startX = this.longPath[0][start][0];
       var startY = this.longPath[0][start][1];
       var endX = this.longPath[0][end][0];
@@ -473,7 +610,7 @@ export default {
               this.moveLayer.removeAll();
               this.moveLayer.add(this.peopleGra);
             }
-          }, 50);
+          }, 100);
         }
       }
     },
@@ -593,6 +730,11 @@ export default {
   <div class="map">
     <div id="viewDiv" style="width: 70%; height: 80%; float: left"></div>
   </div>
+  <div
+    id="myChart"
+    :style="{ padding: '50px', width: '350px', height: '660px', float: 'left' }"
+  ></div>
+
   <link rel="stylesheet" href="https://js.arcgis.com/4.21/esri/themes/light/main.css" />
 </template>
 
