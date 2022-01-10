@@ -442,7 +442,7 @@ export default {
       paths: [],
       startingPoint: {},
       peopleGra: [],
-      simpleMarkerSymbol: [
+      simpleMarkerSymbol: [ //0~4 normal 5~9 working 10~14 eatting 15~19 studying 20~24 cure
         {
           type: "simple-marker",
           color: [192, 192, 192], // grey
@@ -483,12 +483,181 @@ export default {
             width: 2,
           },
         },
+        { 
+          type: "simple-marker",
+          color: [192, 192, 192], // working normal
+          outline: {
+            color: [124, 252, 0], 
+            width: 2,
+          },
+        },
+                {
+          type: "simple-marker",
+          color: [255, 192, 203] , // working  level 1
+          outline: {
+            color: [124, 252, 0],
+            width: 2,
+          },
+        },
+                {
+          type: "simple-marker",
+          color: [250, 128, 114], // working 2
+          outline: {
+            color: [124, 252, 0],
+            width: 2,
+          },
+        },
+                {
+          type: "simple-marker",
+          color: [255, 0, 255], // working 3
+          outline: {
+            color: [124, 252, 0], 
+            width: 2,
+          },
+        },
+        {
+          type: "simple-marker",
+          color: [255, 0, 0], // working 4
+          outline: {
+            color: [124, 252, 0], 
+            width: 2,
+          },
+        },
+        {
+          type: "simple-marker",
+          color: [192, 192, 192], // working 4
+          outline: {
+            color: [150, 250, 255], 
+            width: 2,
+          },
+        },
+        {
+          type: "simple-marker",
+          color: [255, 192, 203], // working 4
+          outline: {
+            color: [150, 250, 255], 
+            width: 2,
+          },
+        },   
+        {
+          type: "simple-marker",
+          color: [250, 128, 114], // working 4
+          outline: {
+            color: [150, 250, 255], 
+            width: 2,
+          },
+        },                
+        {
+          type: "simple-marker",
+          color: [255, 0, 255], // working 4
+          outline: {
+            color: [150, 250, 255], 
+            width: 2,
+          },
+        },
+        {
+          type: "simple-marker",
+          color: [255, 0, 0], // working 4
+          outline: {
+            color: [150, 250, 255], 
+            width: 2,
+          },
+        },
+       {
+          type: "simple-marker",
+          color: [192, 192, 192], // working 4
+          outline: {
+            color: [255, 200, 50], 
+            width: 2,
+          },
+        },
+        {
+          type: "simple-marker",
+          color: [255, 192, 203], // working 4
+          outline: {
+            color: [255, 200, 50], 
+            width: 2,
+          },
+        },   
+        {
+          type: "simple-marker",
+          color: [250, 128, 114], // working 4
+          outline: {
+            color: [255, 200, 50], 
+            width: 2,
+          },
+        },                
+        {
+          type: "simple-marker",
+          color: [255, 0, 255], // working 4
+          outline: {
+            color:[255, 200, 50], 
+            width: 2,
+          },
+        },
+        {
+          type: "simple-marker",
+          color: [255, 0, 0], // working 4
+          outline: {
+            color: [255, 200, 50], 
+            width: 2,
+          },
+        }, 
+        {
+          type: "simple-marker",
+          color: [255, 0, 0], // working 4
+          outline: {
+            color: [150, 250, 255], 
+            width: 2,
+          },
+        },
+       {
+          type: "simple-marker",
+          color: [192, 192, 192], // working 4
+          outline: {
+            color: [100, 50, 150],
+            width: 2,
+          },
+        },
+        {
+          type: "simple-marker",
+          color: [255, 192, 203], // working 4
+          outline: {
+            color: [100, 50, 150],
+            width: 2,
+          },
+        },   
+        {
+          type: "simple-marker",
+          color: [250, 128, 114], // working 4
+          outline: {
+            color: [100, 50, 150],
+            width: 2,
+          },
+        },                
+        {
+          type: "simple-marker",
+          color: [255, 0, 255], // working 4
+          outline: {
+            color:[100, 50, 150],
+            width: 2,
+          },
+        },
+        {
+          type: "simple-marker",
+          color: [255, 0, 0], // working 4
+          outline: {
+            color: [100, 50, 150], 
+            width: 2,
+          },
+        }, 
       ],
       moving: null,
       moveLayer: null,
       peopleMove: [],
       peopleMoveTime: [],
       peopleMoveStay: [],
+      peopleMoveStatus:[],
       peopleAttributes:[],
       // 移动图层
     };
@@ -672,6 +841,8 @@ export default {
       disPathBtn.onclick = function () {
         // PathsGraphicesLayer.removeAll();
         console.log(tempthis.longPath)
+        console.log(tempthis.peopleMoveStay)
+        console.log(tempthis.peopleMoveTime)
         //         tempthis.initAllPoints();
         // tempthis.updateGraphic();
       };
@@ -812,6 +983,7 @@ export default {
           this.peopleGra[i].symbol = this.simpleMarkerSymbol[this.peopleMove[i].stat];
           continue;
         }
+        if(this.peopleMoveStay[i][this.peopleMove[i].start] == 0){
         var startX = this.longPath[i][this.peopleMove[i].start][0];
         var startY = this.longPath[i][this.peopleMove[i].start][1];
         var endX = this.longPath[i][this.peopleMove[i].end][0];
@@ -903,6 +1075,14 @@ export default {
             //     this.peopleGra[i].geometry.latitude
             // );
           }
+        }
+        }else{
+          if(this.peopleMoveStay[i][this.peopleMove[i].start] > 1000){
+            this.peopleMoveStay[i][this.peopleMove[i].start] -=20
+          }else{
+            this.peopleMoveStay[i][this.peopleMove[i].start]--
+          }
+          
         }
       }
     },
@@ -1186,31 +1366,44 @@ export default {
             speed = 5
           }
         }
-        var firstPath,firstPathTimeLine,firstPathStayTime;
+
         var firstlastTime;
         var startDate = new Date(2022, 1, 9, 8, 14, 22, 0);
-        [firstPath,firstPathTimeLine,firstPathStayTime,firstlastTime] = await this.getPathWithTimelineAndStay(randomHome,randomWorkplace,startDate,speed)
+
+        var [firstPath,firstPathTimeLine,firstPathStayTime,firstlastTime] = await this.getPathWithTimelineAndStay(randomHome,randomWorkplace,startDate,speed)
         var stayTime = Math.floor(Math.random() * 9600);
-        console.log(stayTime)
+        firstPathStayTime[firstPathStayTime.length -1]  = stayTime
         var secondStartTime = new Date(Date.parse(firstlastTime) + (stayTime / 4) * 6 * 1000 )
         var isEating = Math.floor(Math.random() * 10);
         if(isEating > 8){
+        var EatingPosition = this.EatingPositions[
+            Math.floor(Math.random() * this.EatingPositions.length)
+          ];
+          var eatingPath,eatinglastTime,eatingPathTimeLine,eatingPathStayTime;
+          var speed = 0
+          if(this.getDistanceWithLL(EatingPosition,randomWorkplace) > 2000){
+            if(Math.random() * 7 > 4){
+              speed = 5
+            }
+          }
+          [eatingPath,eatingPathTimeLine,eatingPathStayTime,eatinglastTime] = await this.getPathWithTimelineAndStay(randomWorkplace,EatingPosition,secondStartTime,speed)
             var entertainmentPosition = this.entertainmentPositions[
             Math.floor(Math.random() * this.entertainmentPositions.length)
           ];
-          var entertainmentPath,entertainmentlastTime,entertainmentPathTimeLine,entertainmentPathStayTime
+          var entertainmentPath,entertainmentlastTime,entertainmentPathTimeLine ,entertainmentPathStayTime
           var speed = 0
-          console.log(this.getDistanceWithLL(entertainmentPosition,randomWorkplace))
           if(this.getDistanceWithLL(entertainmentPosition,randomWorkplace) > 3000){
             if(Math.random() * 7 > 4){
               speed = 5
             }
           }
           console.log("娱乐模式")
-          [entertainmentPath,entertainmentPathTimeLine,entertainmentPathStayTime,entertainmentlastTime] = await this.getPathWithTimelineAndStay(randomWorkplace,entertainmentPosition,secondStartTime,speed)
-          console.log([entertainmentPath,entertainmentPathTimeLine,entertainmentPathStayTime,entertainmentlastTime])
+           console.log([randomWorkplace,entertainmentPosition,secondStartTime,speed])
+          var [entertainmentPath,entertainmentPathTimeLine,entertainmentPathStayTime,entertainmentlastTime] = await this.getPathWithTimelineAndStay(randomWorkplace,entertainmentPosition,secondStartTime,speed)
           var stayTime = Math.floor(Math.random() * 1800)
           var gohomeStartTime = new Date(Date.parse(entertainmentlastTime)+ (stayTime / 4)*6*1000)
+          entertainmentPathStayTime[entertainmentPathStayTime.length -1]  = stayTime
+
           var gohomePath,speed,gohomelastTime,gohomeTimeline,gohomePathStayTime
           var speed = 0
           if(this.getDistanceWithLL(entertainmentPosition,randomHome) > 3000){
@@ -1218,9 +1411,8 @@ export default {
               speed = 5
             }
           }
-        [gohomePath,gohomeTimeline,gohomePathStayTime,gohomelastTime] = await this.getPathWithTimelineAndStay(entertainmentPosition,randomHome,gohomeStartTime,speed)
+       var [gohomePath,gohomeTimeline,gohomePathStayTime,gohomelastTime] = await this.getPathWithTimelineAndStay(entertainmentPosition,randomHome,gohomeStartTime,speed)
           var allTempPath =[],allTimeline= [],allStayTime=[]
-          
           allTempPath.push(...firstPath)
           allTempPath.push(...entertainmentPath)
           allTempPath.push(...gohomePath)
@@ -1233,9 +1425,6 @@ export default {
           this.longPath.push(allTempPath)
           this.peopleMoveTime.push(allTimeline)
           this.peopleMoveStay.push(allStayTime)
-                    console.log(allTempPath)
-          console.log(allTimeline)
-          console.log(allStayTime)
         }else if(isEating > 5){
           var EatingPosition = this.EatingPositions[
             Math.floor(Math.random() * this.EatingPositions.length)
@@ -1247,8 +1436,10 @@ export default {
               speed = 5
             }
           }
-          [eatingPath,eatingPathTimeLine,eatingPathStayTime,eatinglastTime] = await this.getPathWithTimelineAndStay(randomWorkplace,EatingPosition,secondStartTime,speed)
+          
+          var [eatingPath,eatingPathTimeLine,eatingPathStayTime,eatinglastTime] = await this.getPathWithTimelineAndStay(randomWorkplace,EatingPosition,secondStartTime,speed)
           var stayTime = Math.floor(Math.random() * 1000)
+          eatingPathStayTime[eatingPathStayTime.length -1]  = stayTime
           var gohomeStartTime = new Date(Date.parse(eatinglastTime)+ (stayTime / 4)*6*1000)
           var gohomePath,speed,gohomelastTime,gohomeTimeline,gohomePathStayTime
           var speed = 0
@@ -1281,7 +1472,7 @@ export default {
               speed = 5
             }
           }
-        [gohomePath,gohomeTimeline,gohomePathStayTime,gohomelastTime] = await this.getPathWithTimelineAndStay(randomWorkplace,randomHome,secondStartTime,speed)
+        var [gohomePath,gohomeTimeline,gohomePathStayTime,gohomelastTime] = await this.getPathWithTimelineAndStay(randomWorkplace,randomHome,secondStartTime,speed)
           var allTempPath =[],allTimeline= [],allStayTime=[]
           allTempPath.push(...firstPath)
           allTempPath.push(...gohomePath)
@@ -1322,7 +1513,6 @@ export default {
         }else{
           h = 1
         }
-          
       }
 
       var peopleAttribute = {
