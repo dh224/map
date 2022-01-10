@@ -442,7 +442,7 @@ export default {
       paths: [],
       startingPoint: {},
       peopleGra: [],
-      simpleMarkerSymbol: [ //0~4 normal 5~9 working 10~14 eatting 15~19 studying 20~24 cure
+      simpleMarkerSymbol: [ //0~4 normal 5~9 home 10~14 work 15~19 school 20~24 eating  25~29 entainment 30~34 hospital
         {
           type: "simple-marker",
           color: [192, 192, 192], // grey
@@ -651,6 +651,86 @@ export default {
             width: 2,
           },
         }, 
+               {
+          type: "simple-marker",
+          color: [192, 192, 192], // working 4
+          outline: {
+            color: [160,82,45],
+            width: 2,
+          },
+        },
+        {
+          type: "simple-marker",
+          color: [255, 192, 203], // working 4
+          outline: {
+            color: [160,82,45],
+            width: 2,
+          },
+        },   
+        {
+          type: "simple-marker",
+          color: [250, 128, 114], // working 4
+          outline: {
+            color: [160,82,45],
+            width: 2,
+          },
+        },                
+        {
+          type: "simple-marker",
+          color: [255, 0, 255], // working 4
+          outline: {
+            color:[160,82,45],
+            width: 2,
+          },
+        },
+        {
+          type: "simple-marker",
+          color: [255, 0, 0], // working 4
+          outline: {
+            color: [160,82,45], 
+            width: 2,
+          },
+        }, 
+                       {
+          type: "simple-marker",
+          color: [192, 192, 192], // working 4
+          outline: {
+            color: [255,255,0],
+            width: 2,
+          },
+        },
+        {
+          type: "simple-marker",
+          color: [255, 192, 203], // working 4
+          outline: {
+            color: [255,255,0],
+            width: 2,
+          },
+        },   
+        {
+          type: "simple-marker",
+          color: [250, 128, 114], // working 4
+          outline: {
+            color: [255,255,0],
+            width: 2,
+          },
+        },                
+        {
+          type: "simple-marker",
+          color: [255, 0, 255], // working 4
+          outline: {
+            color:[255,255,0],
+            width: 2,
+          },
+        },
+        {
+          type: "simple-marker",
+          color: [255, 0, 0], // working 4
+          outline: {
+            color: [255,255,0], 
+            width: 2,
+          },
+        }, 
       ],
       moving: null,
       moveLayer: null,
@@ -843,6 +923,7 @@ export default {
         console.log(tempthis.longPath)
         console.log(tempthis.peopleMoveStay)
         console.log(tempthis.peopleMoveTime)
+        console.log(tempthis.peopleMoveStatus)
         //         tempthis.initAllPoints();
         // tempthis.updateGraphic();
       };
@@ -972,14 +1053,14 @@ export default {
     updateAllPoint() {
       for (let i = 0; i < this.longPath.length; i++) {
         if (this.peopleMove[i].end >= this.longPath[i].length) {
-          // this.peopleGra[i] = new Graphic({
-          //   geometry: {
-          //     type: "point",
-          //     longitude: this.peopleGra[i].geometry.longitude,
-          //     latitude: this.peopleGra[i].geometry.latitude,
-          //   },
-          //   symbol: this.simpleMarkerSymbol[this.peopleMove[i].stat],
-          // });
+          this.peopleGra[i] = new Graphic({
+            geometry: {
+              type: "point",
+              longitude: this.peopleGra[i].geometry.longitude,
+              latitude: this.peopleGra[i].geometry.latitude,
+            },
+            symbol: this.simpleMarkerSymbol[this.peopleMove[i].stat],
+          });
           this.peopleGra[i].symbol = this.simpleMarkerSymbol[this.peopleMove[i].stat];
           continue;
         }
@@ -1077,6 +1158,64 @@ export default {
           }
         }
         }else{
+          var status = this.peopleMoveStatus[i][this.peopleMove[i].start] 
+          if(status >=10){
+            if(status == 10){
+              this.peopleGra[i] = new Graphic({
+                geometry: {
+                  type: "point",
+                  longitude: this.peopleGra[i].geometry.longitude,
+                  latitude: this.peopleGra[i].geometry.latitude,
+                },
+              symbol: this.simpleMarkerSymbol[ 5+ this.peopleMove[i].stat],
+              });
+            }else if(status == 11){
+              this.peopleGra[i] = new Graphic({
+                geometry: {
+                  type: "point",
+                  longitude: this.peopleGra[i].geometry.longitude,
+                  latitude: this.peopleGra[i].geometry.latitude,
+                },
+              symbol: this.simpleMarkerSymbol[10 + this.peopleMove[i].stat],
+              });
+            }else if(status ==12){
+              this.peopleGra[i] = new Graphic({
+                geometry: {
+                  type: "point",
+                  longitude: this.peopleGra[i].geometry.longitude,
+                  latitude: this.peopleGra[i].geometry.latitude,
+                },
+              symbol: this.simpleMarkerSymbol[15 + this.peopleMove[i].stat],
+              });
+            }else if(status == 13){
+              this.peopleGra[i] = new Graphic({
+                geometry: {
+                  type: "point",
+                  longitude: this.peopleGra[i].geometry.longitude,
+                  latitude: this.peopleGra[i].geometry.latitude,
+                },
+              symbol: this.simpleMarkerSymbol[20 + this.peopleMove[i].stat],
+              });
+            }else if(status == 14){
+              this.peopleGra[i] = new Graphic({
+                geometry: {
+                  type: "point",
+                  longitude: this.peopleGra[i].geometry.longitude,
+                  latitude: this.peopleGra[i].geometry.latitude,
+                },
+              symbol: this.simpleMarkerSymbol[25 + this.peopleMove[i].stat],
+              });
+            }else if(status == 15){
+                            this.peopleGra[i] = new Graphic({
+                geometry: {
+                  type: "point",
+                  longitude: this.peopleGra[i].geometry.longitude,
+                  latitude: this.peopleGra[i].geometry.latitude,
+                },
+              symbol: this.simpleMarkerSymbol[30 + this.peopleMove[i].stat],
+              });
+            }
+          }
           if(this.peopleMoveStay[i][this.peopleMove[i].start] > 1000){
             this.peopleMoveStay[i][this.peopleMove[i].start] -=20
           }else{
@@ -1230,7 +1369,7 @@ export default {
         //几乎不带口罩,50%接种疫苗,年龄在18 ~ 40之间.
       }
     },
-    async getPathWithTimelineAndStay(start,end,startTime,speed){
+    async getPathWithTimelineAndStay(start,end,startTime,speed,startClass,endClass){
       var tempPath = await this.sendRequest(start, end);
       var tempPathTimeline ,lastTime
       [tempPathTimeline ,lastTime] = this.getTimeLineWithPath(tempPath,startTime.getFullYear(),startTime.getMonth(),startTime.getDate(),startTime.getHours(),startTime.getMinutes(),startTime.getSeconds(),
@@ -1238,7 +1377,37 @@ export default {
       var anspath = tempPath
       var anstimeline = tempPathTimeline
       var ansstaytime = this.getStayTimeWithPath(tempPath,speed)
-      return [anspath,anstimeline,ansstaytime,lastTime]
+      var ansStatus = this.getStatusWithPath(tempPath,startClass,endClass)
+      return [anspath,anstimeline,ansstaytime,ansStatus,lastTime]
+    },
+    getStatusWithWord(word){
+      if(word == "home"){
+        return 10
+      }else if(word == "work"){
+        return 11
+      }else if(word == "school"){
+        return 12
+      }else if(word == "eating"){
+        return 13
+      }else if(word == "entertainment"){
+        return 14
+      }else if(word == "hospital"){
+        return 15
+      }else{
+        return 0
+      }
+    },
+    getStatusWithPath(path,startClass,endClass){
+      var ansStatus = []
+      for(var i = 0;i < path.length;i++){
+        ansStatus.push(1)
+      }
+      var sc,ec
+      sc =this.getStatusWithWord(startClass)
+      ec =this.getStatusWithWord(endClass)
+      ansStatus[0] = sc
+      ansStatus[path.length - 1]= ec
+      return ansStatus
     },
     getStayTimeWithPath(path,speed){
       var ansStayTime = [];
@@ -1367,10 +1536,18 @@ export default {
           }
         }
 
+        
         var firstlastTime;
-        var startDate = new Date(2022, 1, 9, 8, 14, 22, 0);
-
-        var [firstPath,firstPathTimeLine,firstPathStayTime,firstlastTime] = await this.getPathWithTimelineAndStay(randomHome,randomWorkplace,startDate,speed)
+        var startDate = new Date(2022, 1, 9, 7, 14, 22, 0);
+        var stayAtFirst
+        if(Math.random() * 10 >5){
+          stayAtFirst = Math.floor(Math.random() * 1000)
+        }else{
+          stayAtFirst = 0
+        } 
+        startDate = new Date(Date.parse(startDate) + (stayAtFirst / 4 )*6*1000 )
+        var [firstPath,firstPathTimeLine,firstPathStayTime,firstPathStatus,firstlastTime] = await this.getPathWithTimelineAndStay(randomHome,randomWorkplace,startDate,speed,"home","work")
+        firstPathStayTime[0] = stayAtFirst
         var stayTime = Math.floor(Math.random() * 9600);
         firstPathStayTime[firstPathStayTime.length -1]  = stayTime
         var secondStartTime = new Date(Date.parse(firstlastTime) + (stayTime / 4) * 6 * 1000 )
@@ -1386,7 +1563,7 @@ export default {
               speed = 5
             }
           }
-          [eatingPath,eatingPathTimeLine,eatingPathStayTime,eatinglastTime] = await this.getPathWithTimelineAndStay(randomWorkplace,EatingPosition,secondStartTime,speed)
+          [eatingPath,eatingPathTimeLine,eatingPathStayTime,eatingPathStatus,eatinglastTime] = await this.getPathWithTimelineAndStay(randomWorkplace,EatingPosition,secondStartTime,speed,"work","eating")
             var entertainmentPosition = this.entertainmentPositions[
             Math.floor(Math.random() * this.entertainmentPositions.length)
           ];
@@ -1399,7 +1576,7 @@ export default {
           }
           console.log("娱乐模式")
            console.log([randomWorkplace,entertainmentPosition,secondStartTime,speed])
-          var [entertainmentPath,entertainmentPathTimeLine,entertainmentPathStayTime,entertainmentlastTime] = await this.getPathWithTimelineAndStay(randomWorkplace,entertainmentPosition,secondStartTime,speed)
+          var [entertainmentPath,entertainmentPathTimeLine,entertainmentPathStayTime,entertainmentPathStatus,entertainmentlastTime] = await this.getPathWithTimelineAndStay(randomWorkplace,entertainmentPosition,secondStartTime,"work","entertainment")
           var stayTime = Math.floor(Math.random() * 1800)
           var gohomeStartTime = new Date(Date.parse(entertainmentlastTime)+ (stayTime / 4)*6*1000)
           entertainmentPathStayTime[entertainmentPathStayTime.length -1]  = stayTime
@@ -1411,8 +1588,8 @@ export default {
               speed = 5
             }
           }
-       var [gohomePath,gohomeTimeline,gohomePathStayTime,gohomelastTime] = await this.getPathWithTimelineAndStay(entertainmentPosition,randomHome,gohomeStartTime,speed)
-          var allTempPath =[],allTimeline= [],allStayTime=[]
+       var [gohomePath,gohomeTimeline,gohomePathStayTime,gohomeStatus,gohomelastTime] = await this.getPathWithTimelineAndStay(entertainmentPosition,randomHome,gohomeStartTime,speed,"entertainment","home")
+          var allTempPath =[],allTimeline= [],allStayTime=[],allStatus=[]
           allTempPath.push(...firstPath)
           allTempPath.push(...entertainmentPath)
           allTempPath.push(...gohomePath)
@@ -1422,9 +1599,13 @@ export default {
           allStayTime.push(...firstPathStayTime)
           allStayTime.push(...entertainmentPathStayTime)
           allStayTime.push(...gohomePathStayTime)
+          allStatus.push(...firstPathStatus)
+          allStatus.push(...entertainmentPathStatus)
+          allStatus.push(...gohomeStatus)
           this.longPath.push(allTempPath)
           this.peopleMoveTime.push(allTimeline)
           this.peopleMoveStay.push(allStayTime)
+          this.peopleMoveStatus.push(allStatus)
         }else if(isEating > 5){
           var EatingPosition = this.EatingPositions[
             Math.floor(Math.random() * this.EatingPositions.length)
@@ -1436,8 +1617,7 @@ export default {
               speed = 5
             }
           }
-          
-          var [eatingPath,eatingPathTimeLine,eatingPathStayTime,eatinglastTime] = await this.getPathWithTimelineAndStay(randomWorkplace,EatingPosition,secondStartTime,speed)
+          var [eatingPath,eatingPathTimeLine,eatingPathStayTime,eatingPathStatus,eatinglastTime] = await this.getPathWithTimelineAndStay(randomWorkplace,EatingPosition,secondStartTime,speed,"work","eating")
           var stayTime = Math.floor(Math.random() * 1000)
           eatingPathStayTime[eatingPathStayTime.length -1]  = stayTime
           var gohomeStartTime = new Date(Date.parse(eatinglastTime)+ (stayTime / 4)*6*1000)
@@ -1448,8 +1628,8 @@ export default {
               speed = 5
             }
           }
-        [gohomePath,gohomeTimeline,gohomePathStayTime,gohomelastTime] = await this.getPathWithTimelineAndStay(EatingPosition,randomHome,gohomeStartTime,speed)
-          var allTempPath =[],allTimeline= [],allStayTime=[]
+        [gohomePath,gohomeTimeline,gohomePathStayTime,gohomeStatus,gohomelastTime] = await this.getPathWithTimelineAndStay(EatingPosition,randomHome,gohomeStartTime,speed,"eating","home")
+          var allTempPath =[],allTimeline= [],allStayTime=[],allStatus=[]
           allTempPath.push(...firstPath)
           allTempPath.push(...eatingPath)
           allTempPath.push(...gohomePath)
@@ -1459,11 +1639,13 @@ export default {
           allStayTime.push(...firstPathStayTime)
           allStayTime.push(...eatingPathStayTime)
           allStayTime.push(...gohomePathStayTime)
+          allStatus.push(...firstPathStatus)
+          allStatus.push(...eatingPathStatus)
+          allStatus.push(...gohomeStatus)
           this.longPath.push(allTempPath)
           this.peopleMoveTime.push(allTimeline)
           this.peopleMoveStay.push(allStayTime) 
-
-
+          this.peopleMoveStatus.push(allStatus)
         }else{
           var gohomePath,speed,gohomelastTime,gohomeTimeline,gohomePathStayTime
           var speed = 0
@@ -1472,17 +1654,20 @@ export default {
               speed = 5
             }
           }
-        var [gohomePath,gohomeTimeline,gohomePathStayTime,gohomelastTime] = await this.getPathWithTimelineAndStay(randomWorkplace,randomHome,secondStartTime,speed)
-          var allTempPath =[],allTimeline= [],allStayTime=[]
+        var [gohomePath,gohomeTimeline,gohomePathStayTime,gohomeStatus,gohomelastTime] = await this.getPathWithTimelineAndStay(randomWorkplace,randomHome,secondStartTime,speed,"work","home")
+          var allTempPath =[],allTimeline= [],allStayTime=[],allStatus=[]
           allTempPath.push(...firstPath)
           allTempPath.push(...gohomePath)
           allTimeline.push(...firstPathTimeLine)
           allTimeline.push(...gohomeTimeline)
           allStayTime.push(...firstPathStayTime)
           allStayTime.push(...gohomePathStayTime)
+          allStatus.push(...firstPathStatus)
+          allStatus.push(...gohomeStatus)
           this.longPath.push(allTempPath)
           this.peopleMoveTime.push(allTimeline)
           this.peopleMoveStay.push(allStayTime) 
+          this.peopleMoveStatus.push(allStatus)
         }
        this.peopleAttributes.push( this.getRandomAttribute("A"))
       } else if (parttern == 1) {
