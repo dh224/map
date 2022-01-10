@@ -489,16 +489,17 @@ export default {
       peopleMove: [],
       peopleMoveTime: [],
       peopleMoveStay: [],
+      peopleAttributes:[],
       // 移动图层
     };
   },
   created() {
-    const pointnumbers = 3; // 生成的路径数量+1
-    for (let i = 0; i < pointnumbers; i++) {
-      this.getPaths(this.positions);
-    }
+    // const pointnumbers = 3; // 生成的路径数量+1
+    // for (let i = 0; i < pointnumbers; i++) {
+    //   this.getPaths(this.positions);
+    // }
     tempthis = this;
-    console.log(this.paths[0]);
+    // console.log(this.paths[0]);
   },
   mounted() {
     this.initMap();
@@ -1108,9 +1109,22 @@ export default {
       }else if(speed == 0){
         step = 12.5
       }
+      console.log(path.length)
       for (var i = 0; i < path.length - 1; i++) {
         if (path[i][0] == path[tempP][0] && path[i][1] == path[tempP][1]) {
           tempP++;
+          ans.push(
+          year +
+            "." +
+            month  +
+            "." +
+            day +
+            " " +
+            hour +
+            ":" +
+            min +
+            ":" +
+            second)
           continue;
         }
         var longitudeGap = Math.abs(path[i][0] - path[tempP][0]);
@@ -1179,13 +1193,12 @@ export default {
         var stayTime = Math.floor(Math.random() * 9600);
         console.log(stayTime)
         var secondStartTime = new Date(Date.parse(firstlastTime) + (stayTime / 4) * 6 * 1000 )
-        console.log(secondStartTime)
         var isEating = Math.floor(Math.random() * 10);
         if(isEating > 8){
             var entertainmentPosition = this.entertainmentPositions[
             Math.floor(Math.random() * this.entertainmentPositions.length)
           ];
-          var entertainmentPath,entertainmentlastTime,entertainmentPathTimeLine,entertainmentPathStayTime;
+          var entertainmentPath,entertainmentlastTime,entertainmentPathTimeLine,entertainmentPathStayTime
           var speed = 0
           console.log(this.getDistanceWithLL(entertainmentPosition,randomWorkplace))
           if(this.getDistanceWithLL(entertainmentPosition,randomWorkplace) > 3000){
@@ -1193,8 +1206,9 @@ export default {
               speed = 5
             }
           }
-          console.log(speed)
-     [entertainmentPath,entertainmentPathTimeLine,entertainmentPathStayTime,entertainmentlastTime] =  await this.getPathWithTimelineAndStay(randomWorkplace,entertainmentPosition,secondStartTime,speed)
+          console.log("娱乐模式")
+          [entertainmentPath,entertainmentPathTimeLine,entertainmentPathStayTime,entertainmentlastTime] = await this.getPathWithTimelineAndStay(randomWorkplace,entertainmentPosition,secondStartTime,speed)
+          console.log([entertainmentPath,entertainmentPathTimeLine,entertainmentPathStayTime,entertainmentlastTime])
           var stayTime = Math.floor(Math.random() * 1800)
           var gohomeStartTime = new Date(Date.parse(entertainmentlastTime)+ (stayTime / 4)*6*1000)
           var gohomePath,speed,gohomelastTime,gohomeTimeline,gohomePathStayTime
@@ -1205,7 +1219,6 @@ export default {
             }
           }
         [gohomePath,gohomeTimeline,gohomePathStayTime,gohomelastTime] = await this.getPathWithTimelineAndStay(entertainmentPosition,randomHome,gohomeStartTime,speed)
-          
           var allTempPath =[],allTimeline= [],allStayTime=[]
           
           allTempPath.push(...firstPath)
@@ -1246,13 +1259,11 @@ export default {
           }
         [gohomePath,gohomeTimeline,gohomePathStayTime,gohomelastTime] = await this.getPathWithTimelineAndStay(EatingPosition,randomHome,gohomeStartTime,speed)
           var allTempPath =[],allTimeline= [],allStayTime=[]
-          console.log(firstPath)
           allTempPath.push(...firstPath)
           allTempPath.push(...eatingPath)
           allTempPath.push(...gohomePath)
           allTimeline.push(...firstPathTimeLine)
           allTimeline.push(...eatingPathTimeLine)
-          console.log(gohomeTimeline)
           allTimeline.push(...gohomeTimeline)
           allStayTime.push(...firstPathStayTime)
           allStayTime.push(...eatingPathStayTime)
@@ -1260,12 +1271,9 @@ export default {
           this.longPath.push(allTempPath)
           this.peopleMoveTime.push(allTimeline)
           this.peopleMoveStay.push(allStayTime) 
-          console.log(allTempPath)
-          console.log(allTimeline)
-          console.log(allStayTime)
+
 
         }else{
-            
           var gohomePath,speed,gohomelastTime,gohomeTimeline,gohomePathStayTime
           var speed = 0
           if(this.getDistanceWithLL(randomWorkplace,randomHome) > 3000){
@@ -1284,44 +1292,49 @@ export default {
           this.longPath.push(allTempPath)
           this.peopleMoveTime.push(allTimeline)
           this.peopleMoveStay.push(allStayTime) 
-          console.log(allTempPath)
-          console.log(allTimeline)
-          console.log(allStayTime)
         }
-        // this.peopleMoveTime.push(this.getTimeLineWithPath(firstPath,2022,1,8,16,10,1,0))
-        // var TemplastTime;
-        // var firstPathTimeLine = this.getTimeLineWithPath(
-        //   firstPath,
-        //   2022,
-        //   1,
-        //   8,
-        //   16,
-        //   10,
-        //   1,
-        //   0,
-        //   TemplastTime
-        // );
-        // var stayTime = Math.floor(Math.random() * 9600);
-        // var d = new Date(
-        //   Date.parse(
-        //     new Date(
-        //       templastTime[0],
-        //       templastTime[1],
-        //       templastTime[2],
-        //       templastTime[3],
-        //       templastTime[4],
-        //       templastTime[5],
-        //       0
-        //     )
-        //   ) +
-        //     (stayTime / 4) * 6 * 1000
-        // );
-
+       this.peopleAttributes.push( this.getRandomAttribute("A"))
       } else if (parttern == 1) {
       } else if (parttern == 2) {
       } else {
       }
     },
+    getRandomAttribute(type){
+      var Mask,s,a,p,h
+      if(type=='A'){
+        if(Math.random() * 10  > 2){
+          Mask = 1
+        }else{
+          Mask = 0
+        }
+        if(Math.random() * 10 > 4){
+          s = 0
+        }else{
+          s = 1
+        }
+        a = Math.floor(Math.random() * 60)
+        if(a < 18 ){
+          a +=18
+        }
+        p="work"
+        if(Math.random() * 10 > 2){
+          h = 0
+        }else{
+          h = 1
+        }
+          
+      }
+
+      var peopleAttribute = {
+        isMask: Mask,
+        sex: s,
+        age : a,
+        profession:p,
+        healthStatus : h
+      }
+      return peopleAttribute
+    }
+    ,
     async sendRequest(start, end) {
       var temppaths = new Array();
       var temppath;
