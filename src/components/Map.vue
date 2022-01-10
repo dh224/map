@@ -442,7 +442,8 @@ export default {
       paths: [],
       startingPoint: {},
       peopleGra: [],
-      simpleMarkerSymbol: [ //0~4 normal 5~9 home 10~14 work 15~19 school 20~24 eating  25~29 entainment 30~34 hospital
+      simpleMarkerSymbol: [
+        //0~4 normal 5~9 home 10~14 work 15~19 school 20~24 eating  25~29 entainment 30~34 hospital
         {
           type: "simple-marker",
           color: [192, 192, 192], // grey
@@ -483,35 +484,35 @@ export default {
             width: 2,
           },
         },
-        { 
+        {
           type: "simple-marker",
           color: [192, 192, 192], // working normal
           outline: {
-            color: [124, 252, 0], 
+            color: [124,252,0],
             width: 2,
           },
         },
-                {
+        {
           type: "simple-marker",
-          color: [255, 192, 203] , // working  level 1
+          color: [255, 192, 203], // working  level 1
           outline: {
-            color: [124, 252, 0],
+            color: [124,252,0],
             width: 2,
           },
         },
-                {
+        {
           type: "simple-marker",
           color: [250, 128, 114], // working 2
           outline: {
-            color: [124, 252, 0],
+            color: [124,252,0],
             width: 2,
           },
         },
-                {
+        {
           type: "simple-marker",
           color: [255, 0, 255], // working 3
           outline: {
-            color: [124, 252, 0], 
+            color: [124,252,0],
             width: 2,
           },
         },
@@ -519,7 +520,7 @@ export default {
           type: "simple-marker",
           color: [255, 0, 0], // working 4
           outline: {
-            color: [124, 252, 0], 
+            color: [124,252,0],
             width: 2,
           },
         },
@@ -527,7 +528,7 @@ export default {
           type: "simple-marker",
           color: [192, 192, 192], // working 4
           outline: {
-            color: [150, 250, 255], 
+            color: [150, 250, 255],
             width: 2,
           },
         },
@@ -535,23 +536,23 @@ export default {
           type: "simple-marker",
           color: [255, 192, 203], // working 4
           outline: {
-            color: [150, 250, 255], 
+            color: [150, 250, 255],
             width: 2,
           },
-        },   
+        },
         {
           type: "simple-marker",
           color: [250, 128, 114], // working 4
           outline: {
-            color: [150, 250, 255], 
+            color: [150, 250, 255],
             width: 2,
           },
-        },                
+        },
         {
           type: "simple-marker",
           color: [255, 0, 255], // working 4
           outline: {
-            color: [150, 250, 255], 
+            color: [150, 250, 255],
             width: 2,
           },
         },
@@ -559,15 +560,15 @@ export default {
           type: "simple-marker",
           color: [255, 0, 0], // working 4
           outline: {
-            color: [150, 250, 255], 
+            color: [150, 250, 255],
             width: 2,
           },
         },
-       {
+        {
           type: "simple-marker",
           color: [192, 192, 192], // working 4
           outline: {
-            color: [255, 200, 50], 
+            color: [255, 200, 50],
             width: 2,
           },
         },
@@ -575,23 +576,23 @@ export default {
           type: "simple-marker",
           color: [255, 192, 203], // working 4
           outline: {
-            color: [255, 200, 50], 
+            color: [255, 200, 50],
             width: 2,
           },
-        },   
+        },
         {
           type: "simple-marker",
           color: [250, 128, 114], // working 4
           outline: {
-            color: [255, 200, 50], 
+            color: [255, 200, 50],
             width: 2,
           },
-        },                
+        },
         {
           type: "simple-marker",
           color: [255, 0, 255], // working 4
           outline: {
-            color:[255, 200, 50], 
+            color: [255, 200, 50],
             width: 2,
           },
         },
@@ -599,11 +600,11 @@ export default {
           type: "simple-marker",
           color: [255, 0, 0], // working 4
           outline: {
-            color: [255, 200, 50], 
+            color: [255, 200, 50],
             width: 2,
           },
-        }, 
-       {
+        },
+        {
           type: "simple-marker",
           color: [192, 192, 192], // working 4
           outline: {
@@ -618,7 +619,7 @@ export default {
             color: [100, 50, 150],
             width: 2,
           },
-        },   
+        },
         {
           type: "simple-marker",
           color: [250, 128, 114], // working 4
@@ -626,12 +627,12 @@ export default {
             color: [100, 50, 150],
             width: 2,
           },
-        },                
+        },
         {
           type: "simple-marker",
           color: [255, 0, 255], // working 4
           outline: {
-            color:[100, 50, 150],
+            color: [100, 50, 150],
             width: 2,
           },
         },
@@ -639,15 +640,15 @@ export default {
           type: "simple-marker",
           color: [255, 0, 0], // working 4
           outline: {
-            color: [100, 50, 150], 
+            color: [100, 50, 150],
             width: 2,
           },
-        }, 
-               {
+        },
+        {
           type: "simple-marker",
           color: [192, 192, 192], // working 4
           outline: {
-            color: [160,82,45],
+            color: [160, 82, 45],
             width: 2,
           },
         },
@@ -655,23 +656,23 @@ export default {
           type: "simple-marker",
           color: [255, 192, 203], // working 4
           outline: {
-            color: [160,82,45],
+            color: [160, 82, 45],
             width: 2,
           },
-        },   
+        },
         {
           type: "simple-marker",
           color: [250, 128, 114], // working 4
           outline: {
-            color: [160,82,45],
+            color: [160, 82, 45],
             width: 2,
           },
-        },                
+        },
         {
           type: "simple-marker",
           color: [255, 0, 255], // working 4
           outline: {
-            color:[160,82,45],
+            color: [160, 82, 45],
             width: 2,
           },
         },
@@ -679,15 +680,15 @@ export default {
           type: "simple-marker",
           color: [255, 0, 0], // working 4
           outline: {
-            color: [160,82,45], 
+            color: [160, 82, 45],
             width: 2,
           },
-        }, 
-                       {
+        },
+        {
           type: "simple-marker",
           color: [192, 192, 192], // working 4
           outline: {
-            color: [255,255,0],
+            color: [255, 255, 0],
             width: 2,
           },
         },
@@ -695,23 +696,23 @@ export default {
           type: "simple-marker",
           color: [255, 192, 203], // working 4
           outline: {
-            color: [255,255,0],
+            color: [255, 255, 0],
             width: 2,
           },
-        },   
+        },
         {
           type: "simple-marker",
           color: [250, 128, 114], // working 4
           outline: {
-            color: [255,255,0],
+            color: [255, 255, 0],
             width: 2,
           },
-        },                
+        },
         {
           type: "simple-marker",
           color: [255, 0, 255], // working 4
           outline: {
-            color:[255,255,0],
+            color: [255, 255, 0],
             width: 2,
           },
         },
@@ -719,18 +720,18 @@ export default {
           type: "simple-marker",
           color: [255, 0, 0], // working 4
           outline: {
-            color: [255,255,0], 
+            color: [255, 255, 0],
             width: 2,
           },
-        }, 
+        },
       ],
       moving: null,
       moveLayer: null,
       peopleMove: [],
       peopleMoveTime: [],
       peopleMoveStay: [],
-      peopleMoveStatus:[],
-      peopleAttributes:[],
+      peopleMoveStatus: [],
+      peopleAttributes: [],
       // 移动图层
     };
   },
@@ -801,7 +802,6 @@ export default {
         //   });
         // }
         // tempthis.initAllPoints();
-
         // tempthis.updateGraphic();
         // tempthis.drawPoint(0, 1);
         // var startNum = 0; // eslint-disable-line no-unused-vars
@@ -818,7 +818,6 @@ export default {
         // console.log(tempthis.startingPoint);
         // tempthis.move(0, 1);
         //生成50条路径
-
         // for (let i = 0; i < 1; i++) {
         //   //每条完整路径
         //   for (let j = 0; j < tempthis.paths[i].length; j++) {
@@ -833,7 +832,6 @@ export default {
       view.map.layers.add(gdLayer);
       this.view = view;
       map.add(PathsGraphicesLayer);
-
       var startBtn = document.getElementById("startBtn");
       var pauseBtn = document.getElementById("pauseBtn");
       var showPathBtn = document.getElementById("showPathBtn");
@@ -846,9 +844,7 @@ export default {
       this.view.ui.add(getPathBtn, "top-right");
 
       getPathBtn.onclick = function () {
-        tempthis.getPathWithParttern("A");
-
-
+         tempthis.getPathWithParttern("B");
       };
       startBtn.onclick = function () {
         tempthis.initAllPoints();
@@ -907,10 +903,10 @@ export default {
 
       disPathBtn.onclick = function () {
         // PathsGraphicesLayer.removeAll();
-        console.log(tempthis.longPath)
-        console.log(tempthis.peopleMoveStay)
-        console.log(tempthis.peopleMoveTime)
-        console.log(tempthis.peopleMoveStatus)
+        console.log(tempthis.longPath);
+        console.log(tempthis.peopleMoveStay);
+        console.log(tempthis.peopleMoveTime);
+        console.log(tempthis.peopleMoveStatus);
         //         tempthis.initAllPoints();
         // tempthis.updateGraphic();
       };
@@ -1051,164 +1047,164 @@ export default {
           this.peopleGra[i].symbol = this.simpleMarkerSymbol[this.peopleMove[i].stat];
           continue;
         }
-        if(this.peopleMoveStay[i][this.peopleMove[i].start] == 0){
-        var startX = this.longPath[i][this.peopleMove[i].start][0];
-        var startY = this.longPath[i][this.peopleMove[i].start][1];
-        var endX = this.longPath[i][this.peopleMove[i].end][0];
-        var endY = this.longPath[i][this.peopleMove[i].end][1];
-        var p = (endX - startX) / (endY - startY);
-        var v = 0.00015;
-        if (startX == endX && startY == endY) {
-          // this.peopleGra[i].geometry.longitude = endX;
-          // this.peopleGra[i].geometry.latitude = endY;
-          this.peopleGra[i] = new Graphic({
-            geometry: {
-              type: "point",
-              longitude: this.peopleGra[i].geometry.longitude,
-              latitude: this.peopleGra[i].geometry.latitude,
-            },
-            symbol: this.simpleMarkerSymbol[this.peopleMove[i].stat],
-          });
-          this.peopleMove[i].end++;
-          this.peopleMove[i].start++;
-          // console.log(
-          //   "有两个相同的点，更新位置" +
-          //     this.peopleGra[i].geometry.longitude +
-          //     "  " +
-          //     this.peopleGra[i].geometry.latitude
-          // );
-        } else {
-          var newX, newY;
-          if (Math.abs(p) == Number.POSITIVE_INFINITY) {
-            endY > startY
-              ? (newY = this.peopleGra[i].geometry.latitude + v * 0.5)
-              : (newY = this.peopleGra[i].geometry.latitude - v * 0.5);
-            newX = this.peopleGra[i].geometry.longitude;
-          } else {
-            if (endX < startX) {
-              newX =
-                this.peopleGra[i].geometry.longitude - (1 / Math.sqrt(1 + p * p)) * v;
-              newY =
-                this.peopleGra[i].geometry.latitude -
-                (p / Math.sqrt(1 + p * p)) * v * 0.5;
-            } else {
-              newX =
-                this.peopleGra[i].geometry.longitude + (1 / Math.sqrt(1 + p * p)) * v;
-              newY =
-                this.peopleGra[i].geometry.latitude +
-                (p / Math.sqrt(1 + p * p)) * v * 0.5;
-            }
-          }
-          if (
-            (this.peopleGra[i].geometry.longitude - endX) * (newX - endX) <= 0 ||
-            (this.peopleGra[i].geometry.latitude - endY) * (newY - endY) <= 0
-          ) {
+        if (this.peopleMoveStay[i][this.peopleMove[i].start] == 0) {
+          var startX = this.longPath[i][this.peopleMove[i].start][0];
+          var startY = this.longPath[i][this.peopleMove[i].start][1];
+          var endX = this.longPath[i][this.peopleMove[i].end][0];
+          var endY = this.longPath[i][this.peopleMove[i].end][1];
+          var p = (endX - startX) / (endY - startY);
+          var v = 0.00015;
+          if (startX == endX && startY == endY) {
             // this.peopleGra[i].geometry.longitude = endX;
-            // this.peopleGra[i].geometry.type = "point";
             // this.peopleGra[i].geometry.latitude = endY;
-            // this.peopleGra[i].symbol = this.simpleMarkerSymbol[this.peopleMove[i].stat];
             this.peopleGra[i] = new Graphic({
               geometry: {
                 type: "point",
-                longitude: endX,
-                latitude: endY,
+                longitude: this.peopleGra[i].geometry.longitude,
+                latitude: this.peopleGra[i].geometry.latitude,
               },
               symbol: this.simpleMarkerSymbol[this.peopleMove[i].stat],
             });
             this.peopleMove[i].end++;
             this.peopleMove[i].start++;
             // console.log(
-            //   "到达第二段位置，更新位置" +
+            //   "有两个相同的点，更新位置" +
             //     this.peopleGra[i].geometry.longitude +
             //     "  " +
             //     this.peopleGra[i].geometry.latitude
             // );
           } else {
-            // this.peopleGra[i].geometry.longitude = newX;
-            // this.peopleGra[i].geometry.type = "point"
-            // this.peopleGra[i].geometry.latitude = newY;
-            // this.peopleGra[i].symbol = this.simpleMarkerSymbol[this.peopleMove[i].stat];
-            this.peopleGra[i] = new Graphic({
-              geometry: {
-                type: "point",
-                longitude: newX,
-                latitude: newY,
-              },
-              symbol: this.simpleMarkerSymbol[this.peopleMove[i].stat],
-            });
-            // console.log(
-            //   "尚未到达第二段位置，更新位置" +
-            //     this.peopleGra[i].geometry.longitude +
-            //     "  " +
-            //     this.peopleGra[i].geometry.latitude
-            // );
+            var newX, newY;
+            if (Math.abs(p) == Number.POSITIVE_INFINITY) {
+              endY > startY
+                ? (newY = this.peopleGra[i].geometry.latitude + v * 0.5)
+                : (newY = this.peopleGra[i].geometry.latitude - v * 0.5);
+              newX = this.peopleGra[i].geometry.longitude;
+            } else {
+              if (endX < startX) {
+                newX =
+                  this.peopleGra[i].geometry.longitude - (1 / Math.sqrt(1 + p * p)) * v;
+                newY =
+                  this.peopleGra[i].geometry.latitude -
+                  (p / Math.sqrt(1 + p * p)) * v * 0.5;
+              } else {
+                newX =
+                  this.peopleGra[i].geometry.longitude + (1 / Math.sqrt(1 + p * p)) * v;
+                newY =
+                  this.peopleGra[i].geometry.latitude +
+                  (p / Math.sqrt(1 + p * p)) * v * 0.5;
+              }
+            }
+            if (
+              (this.peopleGra[i].geometry.longitude - endX) * (newX - endX) <= 0 ||
+              (this.peopleGra[i].geometry.latitude - endY) * (newY - endY) <= 0
+            ) {
+              // this.peopleGra[i].geometry.longitude = endX;
+              // this.peopleGra[i].geometry.type = "point";
+              // this.peopleGra[i].geometry.latitude = endY;
+              // this.peopleGra[i].symbol = this.simpleMarkerSymbol[this.peopleMove[i].stat];
+              this.peopleGra[i] = new Graphic({
+                geometry: {
+                  type: "point",
+                  longitude: endX,
+                  latitude: endY,
+                },
+                symbol: this.simpleMarkerSymbol[this.peopleMove[i].stat],
+              });
+              this.peopleMove[i].end++;
+              this.peopleMove[i].start++;
+              // console.log(
+              //   "到达第二段位置，更新位置" +
+              //     this.peopleGra[i].geometry.longitude +
+              //     "  " +
+              //     this.peopleGra[i].geometry.latitude
+              // );
+            } else {
+              // this.peopleGra[i].geometry.longitude = newX;
+              // this.peopleGra[i].geometry.type = "point"
+              // this.peopleGra[i].geometry.latitude = newY;
+              // this.peopleGra[i].symbol = this.simpleMarkerSymbol[this.peopleMove[i].stat];
+              this.peopleGra[i] = new Graphic({
+                geometry: {
+                  type: "point",
+                  longitude: newX,
+                  latitude: newY,
+                },
+                symbol: this.simpleMarkerSymbol[this.peopleMove[i].stat],
+              });
+              // console.log(
+              //   "尚未到达第二段位置，更新位置" +
+              //     this.peopleGra[i].geometry.longitude +
+              //     "  " +
+              //     this.peopleGra[i].geometry.latitude
+              // );
+            }
           }
-        }
-        }else{
-          var status = this.peopleMoveStatus[i][this.peopleMove[i].start] 
-          if(status >=10){
-            if(status == 10){
+        } else {
+          var status = this.peopleMoveStatus[i][this.peopleMove[i].start];
+          console.log(status)
+          if (status >= 10) {
+            if (status == 10) {
               this.peopleGra[i] = new Graphic({
                 geometry: {
                   type: "point",
                   longitude: this.peopleGra[i].geometry.longitude,
                   latitude: this.peopleGra[i].geometry.latitude,
                 },
-              symbol: this.simpleMarkerSymbol[ 5+ this.peopleMove[i].stat],
+                symbol: this.simpleMarkerSymbol[5 + this.peopleMove[i].stat],
               });
-            }else if(status == 11){
+            } else if (status == 11) {
               this.peopleGra[i] = new Graphic({
                 geometry: {
                   type: "point",
                   longitude: this.peopleGra[i].geometry.longitude,
                   latitude: this.peopleGra[i].geometry.latitude,
                 },
-              symbol: this.simpleMarkerSymbol[10 + this.peopleMove[i].stat],
+                symbol: this.simpleMarkerSymbol[10 + this.peopleMove[i].stat],
               });
-            }else if(status ==12){
+            } else if (status == 12) {
               this.peopleGra[i] = new Graphic({
                 geometry: {
                   type: "point",
                   longitude: this.peopleGra[i].geometry.longitude,
                   latitude: this.peopleGra[i].geometry.latitude,
                 },
-              symbol: this.simpleMarkerSymbol[15 + this.peopleMove[i].stat],
+                symbol: this.simpleMarkerSymbol[15 + this.peopleMove[i].stat],
               });
-            }else if(status == 13){
+            } else if (status == 13) {
               this.peopleGra[i] = new Graphic({
                 geometry: {
                   type: "point",
                   longitude: this.peopleGra[i].geometry.longitude,
                   latitude: this.peopleGra[i].geometry.latitude,
                 },
-              symbol: this.simpleMarkerSymbol[20 + this.peopleMove[i].stat],
+                symbol: this.simpleMarkerSymbol[20 + this.peopleMove[i].stat],
               });
-            }else if(status == 14){
+            } else if (status == 14) {
               this.peopleGra[i] = new Graphic({
                 geometry: {
                   type: "point",
                   longitude: this.peopleGra[i].geometry.longitude,
                   latitude: this.peopleGra[i].geometry.latitude,
                 },
-              symbol: this.simpleMarkerSymbol[25 + this.peopleMove[i].stat],
+                symbol: this.simpleMarkerSymbol[25 + this.peopleMove[i].stat],
               });
-            }else if(status == 15){
-                            this.peopleGra[i] = new Graphic({
+            } else if (status == 15) {
+              this.peopleGra[i] = new Graphic({
                 geometry: {
                   type: "point",
                   longitude: this.peopleGra[i].geometry.longitude,
                   latitude: this.peopleGra[i].geometry.latitude,
                 },
-              symbol: this.simpleMarkerSymbol[30 + this.peopleMove[i].stat],
+                symbol: this.simpleMarkerSymbol[30 + this.peopleMove[i].stat],
               });
             }
           }
-          if(this.peopleMoveStay[i][this.peopleMove[i].start] > 1000){
-            this.peopleMoveStay[i][this.peopleMove[i].start] -=20
-          }else{
-            this.peopleMoveStay[i][this.peopleMove[i].start]--
+          if (this.peopleMoveStay[i][this.peopleMove[i].start] > 1000) {
+            this.peopleMoveStay[i][this.peopleMove[i].start] -= 20;
+          } else {
+            this.peopleMoveStay[i][this.peopleMove[i].start]--;
           }
-          
         }
       }
     },
@@ -1356,57 +1352,65 @@ export default {
         //几乎不带口罩,50%接种疫苗,年龄在18 ~ 40之间.
       }
     },
-    async getPathWithTimelineAndStay(start,end,startTime,speed,startClass,endClass){
+    async getPathWithTimelineAndStay(start, end, startTime, speed, startClass, endClass) {
       var tempPath = await this.sendRequest(start, end);
-      var tempPathTimeline ,lastTime
-      [tempPathTimeline ,lastTime] = this.getTimeLineWithPath(tempPath,startTime.getFullYear(),startTime.getMonth(),startTime.getDate(),startTime.getHours(),startTime.getMinutes(),startTime.getSeconds(),
-      speed) 
-      var anspath = tempPath
-      var anstimeline = tempPathTimeline
-      var ansstaytime = this.getStayTimeWithPath(tempPath,speed)
-      var ansStatus = this.getStatusWithPath(tempPath,startClass,endClass)
-      return [anspath,anstimeline,ansstaytime,ansStatus,lastTime]
+      var [tempPathTimeline, lastTime] = this.getTimeLineWithPath(
+        tempPath,
+        startTime.getFullYear(),
+        startTime.getMonth(),
+        startTime.getDate(),
+        startTime.getHours(),
+        startTime.getMinutes(),
+        startTime.getSeconds(),
+        speed
+      );
+      var anspath = tempPath;
+      var anstimeline = tempPathTimeline;
+      var ansstaytime = this.getStayTimeWithPath(tempPath, speed);
+      var ansStatus = this.getStatusWithPath(tempPath, startClass, endClass);
+      return [anspath, anstimeline, ansstaytime, ansStatus, lastTime];
     },
-    getStatusWithWord(word){
-      if(word == "home"){
-        return 10
-      }else if(word == "work"){
-        return 11
-      }else if(word == "school"){
-        return 12
-      }else if(word == "eating"){
-        return 13
-      }else if(word == "entertainment"){
-        return 14
-      }else if(word == "hospital"){
-        return 15
-      }else{
-        return 0
+    getStatusWithWord(word) {
+      console.log(word)
+      if (word == "home") {
+        return 10;
+      } else if (word == "work") {
+        return 11;
+      } else if (word == "school") {
+        return 12;
+      } else if (word == "eating") {
+        return 13;
+      } else if (word == "entertainment") {
+        return 14;
+      } else if (word == "hospital") {
+        return 15;
+      } else {
+        return 0;
       }
     },
-    getStatusWithPath(path,startClass,endClass){
-      var ansStatus = []
-      for(var i = 0;i < path.length;i++){
-        ansStatus.push(1)
+    getStatusWithPath(path, startClass, endClass) {
+      var ansStatus = [];
+      for (var i = 0; i < path.length; i++) {
+        ansStatus.push(1);
       }
-      var sc,ec
-      sc =this.getStatusWithWord(startClass)
-      ec =this.getStatusWithWord(endClass)
-      ansStatus[0] = sc
-      ansStatus[path.length - 1]= ec
-      return ansStatus
+      var sc, ec;
+      sc = this.getStatusWithWord(startClass);
+      ec = this.getStatusWithWord(endClass);
+      ansStatus[0] = sc;
+      ansStatus[path.length - 1] = ec;
+      return ansStatus;
     },
-    getStayTimeWithPath(path,speed){
+    getStayTimeWithPath(path, speed) {
       var ansStayTime = [];
-      if(speed == 5){
-        var stayVal = 0
-      }else{
-        var stayVal = 5
+      if (speed == 5) {
+        var stayVal = 0;
+      } else {
+        var stayVal = 5;
       }
-      for(var i = 0;i < path.length;i++){
-        ansStayTime.push(stayVal)
+      for (var i = 0; i < path.length; i++) {
+        ansStayTime.push(stayVal);
       }
-      return ansStayTime
+      return ansStayTime;
     },
     getTimeLineWithPath(
       path,
@@ -1442,25 +1446,16 @@ export default {
       var tempP = 1;
       if (speed == 5) {
         step = 1.25;
-      }else if(speed == 0){
-        step = 12.5
+      } else if (speed == 0) {
+        step = 12.5;
       }
-      console.log(path.length)
+      console.log(path.length);
       for (var i = 0; i < path.length - 1; i++) {
         if (path[i][0] == path[tempP][0] && path[i][1] == path[tempP][1]) {
           tempP++;
           ans.push(
-          year +
-            "." +
-            month  +
-            "." +
-            day +
-            " " +
-            hour +
-            ":" +
-            min +
-            ":" +
-            second)
+            year + "." + month + "." + day + " " + hour + ":" + min + ":" + second
+          );
           continue;
         }
         var longitudeGap = Math.abs(path[i][0] - path[tempP][0]);
@@ -1476,7 +1471,7 @@ export default {
           Date.parse(new Date(year, month, day, hour, min, second, 0)) +
             timeWithSecond * 1000
         );
-        
+
         year = d.getFullYear();
         month = d.getMonth();
         day = d.getDate();
@@ -1486,7 +1481,7 @@ export default {
         ans.push(
           d.getFullYear() +
             "." +
-            d.getMonth()  +
+            d.getMonth() +
             "." +
             d.getDate() +
             " " +
@@ -1498,15 +1493,15 @@ export default {
         );
         tempP++;
       } //0.0005 0.00135
-      var lastTime = new Date(year,month,day,hour,min,second,0)
-      return [ans,lastTime];
+      var lastTime = new Date(year, month, day, hour, min, second, 0);
+      return [ans, lastTime];
     }, //"86.023563,44.314909  86.023064,44.316259"
-    getDistanceWithLL(pointA,pointB){
-      var x = Math.abs((pointA[0] - pointB[0]))
-      var y = Math.abs(pointA[1] - pointB[1])
-      var mx = x* 47840
-      var my = y* 110000
-      return Math.sqrt(mx* mx+ my * my)
+    getDistanceWithLL(pointA, pointB) {
+      var x = Math.abs(pointA[0] - pointB[0]);
+      var y = Math.abs(pointA[1] - pointB[1]);
+      var mx = x * 47840;
+      var my = y * 110000;
+      return Math.sqrt(mx * mx + my * my);
     },
     async getPathWithParttern(parttern) {
       if (parttern == "A") {
@@ -1516,187 +1511,461 @@ export default {
         var randomWorkplace = this.workPositions[
           Math.floor(Math.random() * this.workPositions.length)
         ];
-        var speed = 0
-        if(this.getDistanceWithLL(randomHome,randomWorkplace) > 3000){
-          if(Math.random()* 10 >8){
-            speed = 5
+        var speed = 0;
+        if (this.getDistanceWithLL(randomHome, randomWorkplace) > 3000) {
+          if (Math.random() * 10 > 8) {
+            speed = 5;
           }
         }
-
-        
         var firstlastTime;
         var startDate = new Date(2022, 1, 9, 7, 14, 22, 0);
-        var stayAtFirst
-        if(Math.random() * 10 >5){
-          stayAtFirst = Math.floor(Math.random() * 1000)
-        }else{
-          stayAtFirst = 0
-        } 
-        startDate = new Date(Date.parse(startDate) + (stayAtFirst / 4 )*6*1000 )
-        var [firstPath,firstPathTimeLine,firstPathStayTime,firstPathStatus,firstlastTime] = await this.getPathWithTimelineAndStay(randomHome,randomWorkplace,startDate,speed,"home","work")
-        firstPathStayTime[0] = stayAtFirst
+        var stayAtFirst;
+        if (Math.random() * 10 > 5) {
+          stayAtFirst = Math.floor(Math.random() * 1000);
+        } else {
+          stayAtFirst = 0;
+        }
+        startDate = new Date(Date.parse(startDate) + (stayAtFirst / 4) * 6 * 1000);
+        var [
+          firstPath,
+          firstPathTimeLine,
+          firstPathStayTime,
+          firstPathStatus,
+          firstlastTime,
+        ] = await this.getPathWithTimelineAndStay(
+          randomHome,
+          randomWorkplace,
+          startDate,
+          speed,
+          "home",
+          "work"
+        );
+        firstPathStayTime[0] = stayAtFirst;
         var stayTime = Math.floor(Math.random() * 9600);
-        firstPathStayTime[firstPathStayTime.length -1]  = stayTime
-        var secondStartTime = new Date(Date.parse(firstlastTime) + (stayTime / 4) * 6 * 1000 )
+        firstPathStayTime[firstPathStayTime.length - 1] = stayTime;
+        var secondStartTime = new Date(
+          Date.parse(firstlastTime) + (stayTime / 4) * 6 * 1000
+        );
         var isEating = Math.floor(Math.random() * 10);
-        if(isEating > 8){
-        var EatingPosition = this.EatingPositions[
-            Math.floor(Math.random() * this.EatingPositions.length)
-          ];
-          var eatingPath,eatinglastTime,eatingPathTimeLine,eatingPathStayTime;
-          var speed = 0
-          if(this.getDistanceWithLL(EatingPosition,randomWorkplace) > 2000){
-            if(Math.random() * 7 > 4){
-              speed = 5
-            }
-          }
-          [eatingPath,eatingPathTimeLine,eatingPathStayTime,eatingPathStatus,eatinglastTime] = await this.getPathWithTimelineAndStay(randomWorkplace,EatingPosition,secondStartTime,speed,"work","eating")
-            var entertainmentPosition = this.entertainmentPositions[
-            Math.floor(Math.random() * this.entertainmentPositions.length)
-          ];
-          var entertainmentPath,entertainmentlastTime,entertainmentPathTimeLine ,entertainmentPathStayTime
-          var speed = 0
-          if(this.getDistanceWithLL(entertainmentPosition,randomWorkplace) > 3000){
-            if(Math.random() * 7 > 4){
-              speed = 5
-            }
-          }
-          console.log("娱乐模式")
-           console.log([randomWorkplace,entertainmentPosition,secondStartTime,speed])
-          var [entertainmentPath,entertainmentPathTimeLine,entertainmentPathStayTime,entertainmentPathStatus,entertainmentlastTime] = await this.getPathWithTimelineAndStay(randomWorkplace,entertainmentPosition,secondStartTime,"work","entertainment")
-          var stayTime = Math.floor(Math.random() * 1800)
-          var gohomeStartTime = new Date(Date.parse(entertainmentlastTime)+ (stayTime / 4)*6*1000)
-          entertainmentPathStayTime[entertainmentPathStayTime.length -1]  = stayTime
-
-          var gohomePath,speed,gohomelastTime,gohomeTimeline,gohomePathStayTime
-          var speed = 0
-          if(this.getDistanceWithLL(entertainmentPosition,randomHome) > 3000){
-            if(Math.random() * 7 > 4){
-              speed = 5
-            }
-          }
-       var [gohomePath,gohomeTimeline,gohomePathStayTime,gohomeStatus,gohomelastTime] = await this.getPathWithTimelineAndStay(entertainmentPosition,randomHome,gohomeStartTime,speed,"entertainment","home")
-          var allTempPath =[],allTimeline= [],allStayTime=[],allStatus=[]
-          allTempPath.push(...firstPath)
-          allTempPath.push(...entertainmentPath)
-          allTempPath.push(...gohomePath)
-          allTimeline.push(...firstPathTimeLine)
-          allTimeline.push(...entertainmentPathTimeLine)
-          allTimeline.push(...gohomeTimeline)
-          allStayTime.push(...firstPathStayTime)
-          allStayTime.push(...entertainmentPathStayTime)
-          allStayTime.push(...gohomePathStayTime)
-          allStatus.push(...firstPathStatus)
-          allStatus.push(...entertainmentPathStatus)
-          allStatus.push(...gohomeStatus)
-          this.longPath.push(allTempPath)
-          this.peopleMoveTime.push(allTimeline)
-          this.peopleMoveStay.push(allStayTime)
-          this.peopleMoveStatus.push(allStatus)
-        }else if(isEating > 5){
+        if (isEating > 8) {
           var EatingPosition = this.EatingPositions[
             Math.floor(Math.random() * this.EatingPositions.length)
           ];
-          var eatingPath,eatinglastTime,eatingPathTimeLine,eatingPathStayTime;
-          var speed = 0
-          if(this.getDistanceWithLL(EatingPosition,randomWorkplace) > 5000){
-            if(Math.random() * 7 > 4){
-              speed = 5
+          var eatingPath, eatinglastTime, eatingPathTimeLine, eatingPathStayTime;
+          var speed = 0;
+          if (this.getDistanceWithLL(EatingPosition, randomWorkplace) > 2000) {
+            if (Math.random() * 7 > 4) {
+              speed = 5;
             }
           }
-          var [eatingPath,eatingPathTimeLine,eatingPathStayTime,eatingPathStatus,eatinglastTime] = await this.getPathWithTimelineAndStay(randomWorkplace,EatingPosition,secondStartTime,speed,"work","eating")
-          var stayTime = Math.floor(Math.random() * 1000)
-          eatingPathStayTime[eatingPathStayTime.length -1]  = stayTime
-          var gohomeStartTime = new Date(Date.parse(eatinglastTime)+ (stayTime / 4)*6*1000)
-          var gohomePath,speed,gohomelastTime,gohomeTimeline,gohomePathStayTime
-          var speed = 0
-          if(this.getDistanceWithLL(EatingPosition,randomHome) > 3000){
-            if(Math.random() * 7 > 4){
-              speed = 5
+          [
+            eatingPath,
+            eatingPathTimeLine,
+            eatingPathStayTime,
+            eatingPathStatus,
+            eatinglastTime,
+          ] = await this.getPathWithTimelineAndStay(
+            randomWorkplace,
+            EatingPosition,
+            secondStartTime,
+            speed,
+            "work",
+            "eating"
+          );
+          var entertainmentPosition = this.entertainmentPositions[
+            Math.floor(Math.random() * this.entertainmentPositions.length)
+          ];
+          var entertainmentPath,
+            entertainmentlastTime,
+            entertainmentPathTimeLine,
+            entertainmentPathStayTime;
+          var speed = 0;
+          if (this.getDistanceWithLL(entertainmentPosition, randomWorkplace) > 3000) {
+            if (Math.random() * 7 > 4) {
+              speed = 5;
             }
           }
-        [gohomePath,gohomeTimeline,gohomePathStayTime,gohomeStatus,gohomelastTime] = await this.getPathWithTimelineAndStay(EatingPosition,randomHome,gohomeStartTime,speed,"eating","home")
-          var allTempPath =[],allTimeline= [],allStayTime=[],allStatus=[]
-          allTempPath.push(...firstPath)
-          allTempPath.push(...eatingPath)
-          allTempPath.push(...gohomePath)
-          allTimeline.push(...firstPathTimeLine)
-          allTimeline.push(...eatingPathTimeLine)
-          allTimeline.push(...gohomeTimeline)
-          allStayTime.push(...firstPathStayTime)
-          allStayTime.push(...eatingPathStayTime)
-          allStayTime.push(...gohomePathStayTime)
-          allStatus.push(...firstPathStatus)
-          allStatus.push(...eatingPathStatus)
-          allStatus.push(...gohomeStatus)
-          this.longPath.push(allTempPath)
-          this.peopleMoveTime.push(allTimeline)
-          this.peopleMoveStay.push(allStayTime) 
-          this.peopleMoveStatus.push(allStatus)
-        }else{
-          var gohomePath,speed,gohomelastTime,gohomeTimeline,gohomePathStayTime
-          var speed = 0
-          if(this.getDistanceWithLL(randomWorkplace,randomHome) > 3000){
-            if(Math.random() * 7 > 4){
-              speed = 5
+          var [
+            entertainmentPath,
+            entertainmentPathTimeLine,
+            entertainmentPathStayTime,
+            entertainmentPathStatus,
+            entertainmentlastTime,
+          ] = await this.getPathWithTimelineAndStay(
+            randomWorkplace,
+            entertainmentPosition,
+            secondStartTime,
+            "work",
+            "entertainment"
+          );
+          var stayTime = Math.floor(Math.random() * 1800);
+          var gohomeStartTime = new Date(
+            Date.parse(entertainmentlastTime) + (stayTime / 4) * 6 * 1000
+          );
+          entertainmentPathStayTime[entertainmentPathStayTime.length - 1] = stayTime;
+
+          var gohomePath, speed, gohomelastTime, gohomeTimeline, gohomePathStayTime;
+          var speed = 0;
+          if (this.getDistanceWithLL(entertainmentPosition, randomHome) > 3000) {
+            if (Math.random() * 7 > 4) {
+              speed = 5;
             }
           }
-        var [gohomePath,gohomeTimeline,gohomePathStayTime,gohomeStatus,gohomelastTime] = await this.getPathWithTimelineAndStay(randomWorkplace,randomHome,secondStartTime,speed,"work","home")
-          var allTempPath =[],allTimeline= [],allStayTime=[],allStatus=[]
-          allTempPath.push(...firstPath)
-          allTempPath.push(...gohomePath)
-          allTimeline.push(...firstPathTimeLine)
-          allTimeline.push(...gohomeTimeline)
-          allStayTime.push(...firstPathStayTime)
-          allStayTime.push(...gohomePathStayTime)
-          allStatus.push(...firstPathStatus)
-          allStatus.push(...gohomeStatus)
-          this.longPath.push(allTempPath)
-          this.peopleMoveTime.push(allTimeline)
-          this.peopleMoveStay.push(allStayTime) 
-          this.peopleMoveStatus.push(allStatus)
+          var [
+            gohomePath,
+            gohomeTimeline,
+            gohomePathStayTime,
+            gohomeStatus,
+            gohomelastTime,
+          ] = await this.getPathWithTimelineAndStay(
+            entertainmentPosition,
+            randomHome,
+            gohomeStartTime,
+            speed,
+            "entertainment",
+            "home"
+          );
+          var allTempPath = [],
+            allTimeline = [],
+            allStayTime = [],
+            allStatus = [];
+          allTempPath.push(...firstPath);
+          allTempPath.push(...entertainmentPath);
+          allTempPath.push(...gohomePath);
+          allTimeline.push(...firstPathTimeLine);
+          allTimeline.push(...entertainmentPathTimeLine);
+          allTimeline.push(...gohomeTimeline);
+          allStayTime.push(...firstPathStayTime);
+          allStayTime.push(...entertainmentPathStayTime);
+          allStayTime.push(...gohomePathStayTime);
+          allStatus.push(...firstPathStatus);
+          allStatus.push(...entertainmentPathStatus);
+          allStatus.push(...gohomeStatus);
+          this.longPath.push(allTempPath);
+          this.peopleMoveTime.push(allTimeline);
+          this.peopleMoveStay.push(allStayTime);
+          this.peopleMoveStatus.push(allStatus);
+        } else if (isEating > 5) {
+          var EatingPosition = this.EatingPositions[
+            Math.floor(Math.random() * this.EatingPositions.length)
+          ];
+          var eatingPath, eatinglastTime, eatingPathTimeLine, eatingPathStayTime;
+          var speed = 0;
+          if (this.getDistanceWithLL(EatingPosition, randomWorkplace) > 5000) {
+            if (Math.random() * 7 > 4) {
+              speed = 5;
+            }
+          }
+          var [
+            eatingPath,
+            eatingPathTimeLine,
+            eatingPathStayTime,
+            eatingPathStatus,
+            eatinglastTime,
+          ] = await this.getPathWithTimelineAndStay(
+            randomWorkplace,
+            EatingPosition,
+            secondStartTime,
+            speed,
+            "work",
+            "eating"
+          );
+          var stayTime = Math.floor(Math.random() * 1000);
+          eatingPathStayTime[eatingPathStayTime.length - 1] = stayTime;
+          var gohomeStartTime = new Date(
+            Date.parse(eatinglastTime) + (stayTime / 4) * 6 * 1000
+          );
+          var gohomePath, speed, gohomelastTime, gohomeTimeline, gohomePathStayTime;
+          var speed = 0;
+          if (this.getDistanceWithLL(EatingPosition, randomHome) > 3000) {
+            if (Math.random() * 7 > 4) {
+              speed = 5;
+            }
+          }
+          [
+            gohomePath,
+            gohomeTimeline,
+            gohomePathStayTime,
+            gohomeStatus,
+            gohomelastTime,
+          ] = await this.getPathWithTimelineAndStay(
+            EatingPosition,
+            randomHome,
+            gohomeStartTime,
+            speed,
+            "eating",
+            "home"
+          );
+          var allTempPath = [],
+            allTimeline = [],
+            allStayTime = [],
+            allStatus = [];
+          allTempPath.push(...firstPath);
+          allTempPath.push(...eatingPath);
+          allTempPath.push(...gohomePath);
+          allTimeline.push(...firstPathTimeLine);
+          allTimeline.push(...eatingPathTimeLine);
+          allTimeline.push(...gohomeTimeline);
+          allStayTime.push(...firstPathStayTime);
+          allStayTime.push(...eatingPathStayTime);
+          allStayTime.push(...gohomePathStayTime);
+          allStatus.push(...firstPathStatus);
+          allStatus.push(...eatingPathStatus);
+          allStatus.push(...gohomeStatus);
+          this.longPath.push(allTempPath);
+          this.peopleMoveTime.push(allTimeline);
+          this.peopleMoveStay.push(allStayTime);
+          this.peopleMoveStatus.push(allStatus);
+        } else {
+          var gohomePath, speed, gohomelastTime, gohomeTimeline, gohomePathStayTime;
+          var speed = 0;
+          if (this.getDistanceWithLL(randomWorkplace, randomHome) > 3000) {
+            if (Math.random() * 7 > 4) {
+              speed = 5;
+            }
+          }
+          var [
+            gohomePath,
+            gohomeTimeline,
+            gohomePathStayTime,
+            gohomeStatus,
+            gohomelastTime,
+          ] = await this.getPathWithTimelineAndStay(
+            randomWorkplace,
+            randomHome,
+            secondStartTime,
+            speed,
+            "work",
+            "home"
+          );
+          var allTempPath = [],
+            allTimeline = [],
+            allStayTime = [],
+            allStatus = [];
+          allTempPath.push(...firstPath);
+          allTempPath.push(...gohomePath);
+          allTimeline.push(...firstPathTimeLine);
+          allTimeline.push(...gohomeTimeline);
+          allStayTime.push(...firstPathStayTime);
+          allStayTime.push(...gohomePathStayTime);
+          allStatus.push(...firstPathStatus);
+          allStatus.push(...gohomeStatus);
+          this.longPath.push(allTempPath);
+          this.peopleMoveTime.push(allTimeline);
+          this.peopleMoveStay.push(allStayTime);
+          this.peopleMoveStatus.push(allStatus);
         }
-       this.peopleAttributes.push( this.getRandomAttribute("A"))
-      } else if (parttern == 1) {
+        this.peopleAttributes.push(this.getRandomAttribute("A"));
+      } else if (parttern == "B") {
+        console.log("B!!!")
+        var randomHome = this.HousePositions[
+          Math.floor(Math.random() * this.HousePositions.length)
+        ];
+        var randomSchool = this.midSchoolPositsions[
+          Math.floor(Math.random() * this.midSchoolPositsions.length)
+        ];
+        var speed = 0;
+        if (this.getDistanceWithLL(randomHome, randomSchool) > 3000) {
+          if (Math.random() * 10 > 8) {
+            speed = 5;
+          }
+        }
+        var firstlastTime;
+        var startDate = new Date(2022, 1, 9, 7, 14, 22, 0);
+        var stayAtFirst;
+        if (Math.random() * 10 > 7) {
+          stayAtFirst = Math.floor(Math.random() * 300);
+        } else {
+          stayAtFirst = 0;
+        }
+        startDate = new Date(Date.parse(startDate) + (stayAtFirst / 4) * 6 * 1000);
+        var [
+          firstPath,
+          firstPathTimeLine,
+          firstPathStayTime,
+          firstPathStatus,
+          firstlastTime,
+        ] = await this.getPathWithTimelineAndStay(
+          randomHome,
+          randomSchool,
+          startDate,
+          speed,
+          "home",
+          "school"
+        );
+        firstPathStayTime[0] = stayAtFirst;
+        var stayTime = Math.floor(Math.random() * 20000);
+        if (stayTime < 5000) {
+          stayTime += 5000;
+        }
+        firstPathStayTime[firstPathStayTime.length - 1] = stayTime;
+        var secondStartTime = new Date(
+          Date.parse(firstlastTime) + (stayTime / 4) * 6 * 1000
+        );
+        var tempLastPosition = randomSchool;
+        var tempStartTime = secondStartTime
+        var templastClass = "school"
+        var secondPath = [],
+          secondPathTimeLine = [],
+          secondPathStayTime = [],
+          secondPathStatus = [],
+          secondLastTime
+        while (Math.random() * 10 > 7) {
+          isEating = Math.random() * 10;
+          if (isEating > 5) {
+            var tempEatingPosition = this.EatingPositions[
+              Math.floor(Math.random() * this.EatingPositions.length)
+            ];
+            var  tempspeed = 0;
+            if (this.getDistanceWithLL(tempLastPosition, tempEatingPosition) > 3000) {
+              if (Math.random() * 10 > 8) {
+                tempspeed = 5;
+              }
+            }
+            var [
+              tempansPath,
+              tempansPathTimeLine,
+              tempansPathStayTime,
+              tempansPathStatus,
+              templastTime,
+            ] = await this.getPathWithTimelineAndStay(
+              tempLastPosition,
+              tempEatingPosition,
+              tempStartTime,
+              tempspeed,
+              templastClass,
+              "eating"
+            )
+            secondPath.push(tempansPath)
+            secondPathTimeLine.push(tempansPathTimeLine)
+            secondPathStayTime.push(tempansPathStayTime)
+            secondPathStatus.push(tempansPathStatus)
+            templastClass = "eating"
+            tempLastPosition = tempEatingPosition
+            var tempstayTime = Math.floor(Math.random() * 1800);
+            tempStartTime  = new Date(
+            Date.parse(templastTime) + (tempstayTime / 4) * 6 * 1000);
+          }else{
+            var tempEntertainmentPosition = this.entertainmentPositions[
+              Math.floor(Math.random() * this.entertainmentPositions.length)
+            ];
+            var  tempspeed = 0;
+            if (this.getDistanceWithLL(tempLastPosition, tempEntertainmentPosition) > 3000) {
+              if (Math.random() * 10 > 8) {
+                tempspeed = 5;
+              }
+            }
+            var [
+              tempansPath,
+              tempansPathTimeLine,
+              tempansPathStayTime,
+              tempansPathStatus,
+              templastTime,
+            ] = await this.getPathWithTimelineAndStay(
+              tempLastPosition,
+              tempEntertainmentPosition,
+              tempStartTime,
+              tempspeed,
+              templastClass,
+              "entertainment"
+            )
+            secondPath.push(tempansPath)
+            secondPathTimeLine.push(tempansPathTimeLine)
+            secondPathStayTime.push(tempansPathStayTime)
+            secondPathStatus.push(tempansPathStatus)
+            templastClass = "entertainment"
+            tempLastPosition = tempEntertainmentPosition
+            var tempstayTime = Math.floor(Math.random() * 1800);
+            tempStartTime  = new Date(
+            Date.parse(templastTime) + (tempstayTime / 4) * 6 * 1000);
+          }
+        }
+        var gohomespeed = 0
+        if (this.getDistanceWithLL(randomHome, randomSchool) > 3000) {
+          if (Math.random() * 10 > 8) {
+            gohomespeed = 5;
+          }
+        }
+        var [
+          gohomePath,
+          gohomeTimeLine,
+          gohomeStayTime,
+          gohomeStatus,
+          gohomelastTime,
+        ] = await this.getPathWithTimelineAndStay(
+          tempLastPosition,
+          randomHome,
+          tempStartTime,
+          gohomespeed,
+          templastClass,
+          "home"
+        );
+        var allTempPath = [],
+            allTimeline = [],
+            allStayTime = [],
+            allStatus = [];
+          allTempPath.push(...firstPath);
+          for(let i = 0;i<secondPath.length;i++){
+            allTempPath.push(...secondPath[i])
+          }
+          allTempPath.push(...gohomePath);
+          allTimeline.push(...firstPathTimeLine);
+          for(let i = 0;i<secondPathTimeLine.length;i++){
+            allTimeline.push(secondPathTimeLine[i])
+          }
+          allTimeline.push(...gohomeTimeLine);
+          allStayTime.push(...firstPathStayTime);
+          for(let i = 0;i<secondPathStayTime.length;i++){
+            allStayTime.push(...secondPathStayTime[i])
+          }
+          allStayTime.push(...gohomeStayTime);
+          allStatus.push(...firstPathStatus);
+          for(let i = 0;i<secondPathStatus.length;i++){
+            allStatus.push(...secondPathStatus[i])
+          }
+          allStatus.push(...gohomeStatus);
+          this.longPath.push(allTempPath);
+          this.peopleMoveTime.push(allTimeline);
+          this.peopleMoveStay.push(allStayTime);
+          this.peopleMoveStatus.push(allStatus);
       } else if (parttern == 2) {
       } else {
       }
     },
-    getRandomAttribute(type){
-      var Mask,s,a,p,h
-      if(type=='A'){
-        if(Math.random() * 10  > 2){
-          Mask = 1
-        }else{
-          Mask = 0
+    getRandomAttribute(type) {
+      var Mask, s, a, p, h;
+      if (type == "A") {
+        if (Math.random() * 10 > 2) {
+          Mask = 1;
+        } else {
+          Mask = 0;
         }
-        if(Math.random() * 10 > 4){
-          s = 0
-        }else{
-          s = 1
+        if (Math.random() * 10 > 4) {
+          s = 0;
+        } else {
+          s = 1;
         }
-        a = Math.floor(Math.random() * 60)
-        if(a < 18 ){
-          a +=18
+        a = Math.floor(Math.random() * 60);
+        if (a < 18) {
+          a += 18;
         }
-        p="work"
-        if(Math.random() * 10 > 2){
-          h = 0
-        }else{
-          h = 1
+        p = "work";
+        if (Math.random() * 10 > 2) {
+          h = 0;
+        } else {
+          h = 1;
         }
       }
 
       var peopleAttribute = {
         isMask: Mask,
         sex: s,
-        age : a,
-        profession:p,
-        healthStatus : h
-      }
-      return peopleAttribute
-    }
-    ,
+        age: a,
+        profession: p,
+        healthStatus: h,
+      };
+      return peopleAttribute;
+    },
     async sendRequest(start, end) {
       var temppaths = new Array();
       var temppath;
@@ -1739,7 +2008,7 @@ export default {
         })
         .catch((err) => {
           console.log(err);
-        })
+        });
     },
     getPaths(positions) {
       // positions= 所有标记点，用以随机选取 Pathnumber = 需要创建的路径数
