@@ -603,14 +603,6 @@ export default {
             width: 2,
           },
         }, 
-        {
-          type: "simple-marker",
-          color: [255, 0, 0], // working 4
-          outline: {
-            color: [150, 250, 255], 
-            width: 2,
-          },
-        },
        {
           type: "simple-marker",
           color: [192, 192, 192], // working 4
@@ -799,13 +791,8 @@ export default {
         zoom: 14,
         center: [86.05775587825876, 44.30152194422269], // longitude, latitude
       });
-      var listPoints = [];
       view.on("click", function (e) {
         // console.log(360 / 17319538.35239651) //17319538.35239651
-        var temp = [e.mapPoint.longitude, e.mapPoint.latitude];
-        console.log(temp);
-        console.log(86.05181639454925 - 86.05318110262685);
-        console.log(44.301429803938035 - 44.301411375676444);
         // var tempList = [e.mapPoint.longitude,e.mapPoint.latitude]
         // listPoints.push(tempList)
         // if(listPoints.length >= 30){
