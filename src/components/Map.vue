@@ -250,7 +250,7 @@ export default {
         [86.041493, 44.292236],
         [86.055605, 44.296674],
       ],
-      HospitalPositin: [
+      HospitalPositins: [
         [86.03262, 44.292307],
         [86.035547, 44.292129],
         [86.035521, 44.290206],
@@ -336,6 +336,19 @@ export default {
         [86.024645, 44.335651],
         [86.113033, 44.312778],
       ],
+      libraryPositions:[
+[86.022389, 44.300668],
+[86.016278, 44.292534],
+[86.019659, 44.298868],
+[86.041054, 44.301735],
+[86.037406, 44.302276],
+[86.018186, 44.338019],
+[86.071530, 44.307573],
+[86.016626, 44.332252],
+[86.0584833,44.299071],
+[86.112303, 44.290558],
+      ],
+
       positions: [
         [86.057925, 44.301434],
         [86.05809, 44.306786],
@@ -443,7 +456,7 @@ export default {
       startingPoint: {},
       peopleGra: [],
       simpleMarkerSymbol: [
-        //0~4 normal 5~9 home 10~14 work 15~19 school 20~24 eating  25~29 entainment 30~34 hospital
+        //0~4 normal 5~9 home 10~14 work 15~19 school 20~24 eating  25~29 entainment 30~34 hospital 35~39 library
         {
           type: "simple-marker",
           color: [192, 192, 192], // grey
@@ -724,6 +737,46 @@ export default {
             width: 2,
           },
         },
+                {
+          type: "simple-marker",
+          color: [192, 192, 192], // working 4
+          outline: {
+            color: [50,100,150],
+            width: 2,
+          },
+        },
+        {
+          type: "simple-marker",
+          color: [255, 192, 203], // working 4
+          outline: {
+            color: [50,100,150],
+            width: 2,
+          },
+        },
+        {
+          type: "simple-marker",
+          color: [250, 128, 114], // working 4
+          outline: {
+            color: [50,100,150],
+            width: 2,
+          },
+        },
+        {
+          type: "simple-marker",
+          color: [255, 0, 255], // working 4
+          outline: {
+            color: [50,100,150],
+            width: 2,
+          },
+        },
+        {
+          type: "simple-marker",
+          color: [255, 0, 0], // working 4
+          outline: {
+            color: [50,100,150],
+            width: 2,
+          },
+        },
       ],
       moving: null,
       moveLayer: null,
@@ -732,6 +785,7 @@ export default {
       peopleMoveStay: [],
       peopleMoveStatus: [],
       peopleAttributes: [],
+      peopleInformation:[],
       // 移动图层
     };
   },
@@ -792,15 +846,16 @@ export default {
         zoom: 14,
         center: [86.05775587825876, 44.30152194422269], // longitude, latitude
       });
+      var listPoints = []
       view.on("click", function (e) {
         // console.log(360 / 17319538.35239651) //17319538.35239651
-        // var tempList = [e.mapPoint.longitude,e.mapPoint.latitude]
-        // listPoints.push(tempList)
-        // if(listPoints.length >= 30){
-        //   listPoints.forEach(element => {
-        //     console.log(element)
-        //   });
-        // }
+        var tempList = [e.mapPoint.longitude,e.mapPoint.latitude]
+        listPoints.push(tempList)
+        if(listPoints.length >= 10){
+          listPoints.forEach(element => {
+            console.log(element)
+          });
+        }
         // tempthis.initAllPoints();
         // tempthis.updateGraphic();
         // tempthis.drawPoint(0, 1);
@@ -844,7 +899,30 @@ export default {
       this.view.ui.add(getPathBtn, "top-right");
 
       getPathBtn.onclick = function () {
-         tempthis.getPathWithParttern("B");
+        var t = Math.random()* 10
+        if(t > 6){
+          tempthis.getPathWithParttern("A");
+        }else if(t >4){
+          tempthis.getPathWithParttern("B");
+        }else if(t > 2){
+          tempthis.getPathWithParttern("C");
+        }else{
+          tempthis.getPathWithParttern("D");
+        }
+        var a= 0,b=0,c=0,d=0
+        
+        tempthis.peopleInformation.forEach(element => {
+          if(element =="A"){
+            a++
+          }else if(element =="B"){
+            b++
+          }else if(element =="C"){
+            c++
+          }else if(element =="D"){
+            d++
+          }
+        });
+        console.log("目前共有"+(a+b+c+d)+"人."+"其中工人:" + a+"位，学生: "+b+"位，退休人:"+c+"位，乱走人:" + d+"位")
       };
       startBtn.onclick = function () {
         tempthis.initAllPoints();
@@ -1142,7 +1220,6 @@ export default {
           }
         } else {
           var status = this.peopleMoveStatus[i][this.peopleMove[i].start];
-          console.log(status)
           if (status >= 10) {
             if (status == 10) {
               this.peopleGra[i] = new Graphic({
@@ -1197,6 +1274,15 @@ export default {
                   latitude: this.peopleGra[i].geometry.latitude,
                 },
                 symbol: this.simpleMarkerSymbol[30 + this.peopleMove[i].stat],
+              });
+            }else if(status == 16){
+                            this.peopleGra[i] = new Graphic({
+                geometry: {
+                  type: "point",
+                  longitude: this.peopleGra[i].geometry.longitude,
+                  latitude: this.peopleGra[i].geometry.latitude,
+                },
+                symbol: this.simpleMarkerSymbol[35 + this.peopleMove[i].stat],
               });
             }
           }
@@ -1384,8 +1470,10 @@ export default {
         return 14;
       } else if (word == "hospital") {
         return 15;
-      } else {
-        return 0;
+      } else if(word =="library"){
+        return 16;
+      }else{
+        return 0
       }
     },
     getStatusWithPath(path, startClass, endClass) {
@@ -1505,6 +1593,8 @@ export default {
     },
     async getPathWithParttern(parttern) {
       if (parttern == "A") {
+        console.log("A!")
+        this.peopleInformation.push("A")
         var randomHome = this.HousePositions[
           Math.floor(Math.random() * this.HousePositions.length)
         ];
@@ -1758,6 +1848,7 @@ export default {
         this.peopleAttributes.push(this.getRandomAttribute("A"));
       } else if (parttern == "B") {
         console.log("B!!!")
+        this.peopleInformation.push("B")
         var randomHome = this.HousePositions[
           Math.floor(Math.random() * this.HousePositions.length)
         ];
@@ -1928,8 +2019,412 @@ export default {
           this.peopleMoveTime.push(allTimeline);
           this.peopleMoveStay.push(allStayTime);
           this.peopleMoveStatus.push(allStatus);
-      } else if (parttern == 2) {
+      } else if (parttern == "C") {
+        console.log("C!!!")
+        this.peopleInformation.push("C")
+        var randomHome = this.HousePositions[
+          Math.floor(Math.random() * this.HousePositions.length)
+        ];
+        var startDate = new Date(2022, 1, 9, 7, 24, 22, 0);
+        var stayAtFirst;
+        if (Math.random() * 10 > 7) {
+          stayAtFirst = Math.floor(Math.random() * 2000);
+        } else {
+          stayAtFirst = 0;
+        }
+        var tempStartTime = new Date(Date.parse(startDate) + (stayAtFirst / 4) * 6 * 1000);
+        var tempStartPosition = randomHome;
+        var tempEndPosition ,templastClass = "home"
+        var isNext = 9
+        var secondPath = [],
+          secondPathTimeLine = [],
+          secondPathStayTime = [],
+          secondPathStatus = [],
+          secondLastTime
+          
+        while(isNext > 5){
+          var random = Math.random() * 10
+          if(random > 7){ //library
+            tempEndPosition = this.libraryPositions[
+              Math.floor(Math.random() * this.libraryPositions.length)
+            ];
+          var tempspeed = 0;
+         
+          if (this.getDistanceWithLL(tempStartPosition, tempEndPosition) > 3000) {
+            if (Math.random() * 10 > 8) {
+              tempspeed = 5;
+            }
+          }
+          var [
+              tempansPath,
+              tempansPathTimeLine,
+              tempansPathStayTime,
+              tempansPathStatus,
+              templastTime,
+            ] = await this.getPathWithTimelineAndStay(
+              tempStartPosition,
+              tempEndPosition,
+              tempStartTime,
+              tempspeed,
+              templastClass,
+              "library"
+            )
+            var tempstayTime = Math.floor(Math.random() * 5000);
+            if(stayAtFirst >0){
+              tempansPathStayTime[0] = stayAtFirst;
+            }
+            stayAtFirst = -1
+            tempansPathStayTime[tempansPathStayTime.length - 1] = tempstayTime;
+            tempStartTime  = new Date(
+            Date.parse(templastTime) + (tempstayTime / 4) * 6 * 1000);
+            tempStartPosition = tempEndPosition
+            templastClass = "library"
+            secondPath.push(tempansPath)
+            secondPathTimeLine.push(tempansPathTimeLine)
+            secondPathStayTime.push(tempansPathStayTime)
+            secondPathStatus.push(tempansPathStatus)
+          }else if (random> 5){ //hosptial 
+            tempEndPosition = this.HospitalPositins[
+              Math.floor(Math.random() * this.HospitalPositins.length)
+            ];
+          var tempspeed = 0;
+          if (this.getDistanceWithLL(tempStartPosition, tempEndPosition) > 3000) {
+            if (Math.random() * 10 > 8) {
+              tempspeed = 5;
+            }
+          }
+          var [
+              tempansPath,
+              tempansPathTimeLine,
+              tempansPathStayTime,
+              tempansPathStatus,
+              templastTime,
+            ] = await this.getPathWithTimelineAndStay(
+              tempStartPosition,
+              tempEndPosition,
+              tempStartTime,
+              tempspeed,
+              templastClass,
+              "hospital"
+            )
+            var tempstayTime = Math.floor(Math.random() * 5000);
+            tempansPathStayTime[tempansPathStayTime.length - 1] = tempstayTime;
+            tempStartTime  = new Date(
+            Date.parse(templastTime) + (tempstayTime / 4) * 6 * 1000);
+            tempStartPosition = tempEndPosition
+            templastClass = "hospital"
+            secondPath.push(tempansPath)
+            secondPathTimeLine.push(tempansPathTimeLine)
+            secondPathStayTime.push(tempansPathStayTime)
+            secondPathStatus.push(tempansPathStatus)
+          }else if(random > 3){
+              tempEndPosition = this.entertainmentPositions[
+              Math.floor(Math.random() * this.entertainmentPositions.length)
+            ];
+          var tempspeed = 0;
+          if (this.getDistanceWithLL(tempStartPosition, tempEndPosition) > 3000) {
+            if (Math.random() * 10 > 8) {
+              tempspeed = 5;
+            }
+          }
+          var [
+              tempansPath,
+              tempansPathTimeLine,
+              tempansPathStayTime,
+              tempansPathStatus,
+              templastTime,
+            ] = await this.getPathWithTimelineAndStay(
+              tempStartPosition,
+              tempEndPosition,
+              tempStartTime,
+              tempspeed,
+              templastClass,
+              "entertainment"
+            )
+
+            var tempstayTime = Math.floor(Math.random() * 3500);
+            tempansPathStayTime[tempansPathStayTime.length - 1] = tempstayTime;
+            tempStartTime  = new Date(
+            Date.parse(templastTime) + (tempstayTime / 4) * 6 * 1000);
+            tempStartPosition = tempEndPosition
+            templastClass = "entertainment"
+            secondPath.push(tempansPath)
+            secondPathTimeLine.push(tempansPathTimeLine)
+            secondPathStayTime.push(tempansPathStayTime)
+            secondPathStatus.push(tempansPathStatus)
+          }else {
+                          tempEndPosition = this.EatingPositions[
+              Math.floor(Math.random() * this.EatingPositions.length)
+            ];
+          var tempspeed = 0;
+          if (this.getDistanceWithLL(tempStartPosition, tempEndPosition) > 3000) {
+            if (Math.random() * 10 > 8) {
+              tempspeed = 5;
+            }
+          }
+          var [
+              tempansPath,
+              tempansPathTimeLine,
+              tempansPathStayTime,
+              tempansPathStatus,
+              templastTime,
+            ] = await this.getPathWithTimelineAndStay(
+              tempStartPosition,
+              tempEndPosition,
+              tempStartTime,
+              tempspeed,
+              templastClass,
+              "eating"
+            )
+
+            var tempstayTime = Math.floor(Math.random() * 3000);
+            tempansPathStayTime[tempansPathStayTime.length - 1] = tempstayTime;
+            tempStartTime  = new Date(
+            Date.parse(templastTime) + (tempstayTime / 4) * 6 * 1000);
+            tempStartPosition = tempEndPosition
+            templastClass = "eating"
+            secondPath.push(tempansPath)
+            secondPathTimeLine.push(tempansPathTimeLine)
+            secondPathStayTime.push(tempansPathStayTime)
+            secondPathStatus.push(tempansPathStatus)
+          }
+          isNext = Math.random() * 10
+        }
+        tempEndPosition = randomHome
+          var tempspeed = 0;
+          if (this.getDistanceWithLL(tempStartPosition, tempEndPosition) > 3000) {
+            if (Math.random() * 10 > 8) {
+              tempspeed = 5;
+            }
+          }
+          var [
+              tempansPath,
+              tempansPathTimeLine,
+              tempansPathStayTime,
+              tempansPathStatus,
+              templastTime,
+            ] = await this.getPathWithTimelineAndStay(
+              tempStartPosition,
+              tempEndPosition,
+              tempStartTime,
+              tempspeed,
+              templastClass,
+              "home"
+            )
+            secondPath.push(tempansPath)
+            secondPathTimeLine.push(tempansPathTimeLine)
+            secondPathStayTime.push(tempansPathStayTime)
+            secondPathStatus.push(tempansPathStatus)
+            var tempstayTime = Math.floor(Math.random() * 3000);
+            tempStartTime  = new Date(
+            Date.parse(templastTime) + (tempstayTime / 4) * 6 * 1000);
+            tempStartPosition = tempEndPosition
+            templastClass = "home"
+        var allTempPath = [],
+            allTimeline = [],
+            allStayTime = [],
+            allStatus = [];
+          for(let i = 0;i<secondPath.length;i++){
+            allTempPath.push(...secondPath[i])
+          }
+          for(let i = 0;i<secondPathTimeLine.length;i++){
+            allTimeline.push(secondPathTimeLine[i])
+          }
+          for(let i = 0;i<secondPathStayTime.length;i++){
+            allStayTime.push(...secondPathStayTime[i])
+          }
+          for(let i = 0;i<secondPathStatus.length;i++){
+            allStatus.push(...secondPathStatus[i])
+          }
+          this.longPath.push(allTempPath);
+          this.peopleMoveTime.push(allTimeline);
+          this.peopleMoveStay.push(allStayTime);
+          this.peopleMoveStatus.push(allStatus);
       } else {
+        console.log("D!!!")
+         this.peopleInformation.push("D")
+        var randomHome = this.HousePositions[
+          Math.floor(Math.random() * this.HousePositions.length)
+        ];
+        var startDate = new Date(2022, 1, 9, 7, 24, 22, 0);
+        var stayAtFirst;
+        if (Math.random() * 10 > 2) {
+          stayAtFirst = Math.floor(Math.random() * 8000);
+        } else {
+          stayAtFirst = 0;
+        }
+        var tempStartTime = new Date(Date.parse(startDate) + (stayAtFirst / 4) * 6 * 1000);
+        var tempStartPosition = randomHome;
+        var tempEndPosition ,templastClass = "home"
+        var isNext = 9
+        var secondPath = [],
+          secondPathTimeLine = [],
+          secondPathStayTime = [],
+          secondPathStatus = [],
+          secondLastTime
+          
+        while(isNext > 3){
+          var random = Math.random() * 10
+          if(random > 8){ //library
+            tempEndPosition = this.libraryPositions[
+              Math.floor(Math.random() * this.libraryPositions.length)
+            ];
+          var tempspeed = 0;
+         
+          if (this.getDistanceWithLL(tempStartPosition, tempEndPosition) > 3000) {
+            if (Math.random() * 10 > 4) {
+              tempspeed = 5;
+            }
+          }
+          var [
+              tempansPath,
+              tempansPathTimeLine,
+              tempansPathStayTime,
+              tempansPathStatus,
+              templastTime,
+            ] = await this.getPathWithTimelineAndStay(
+              tempStartPosition,
+              tempEndPosition,
+              tempStartTime,
+              tempspeed,
+              templastClass,
+              "library"
+            )
+            var tempstayTime = Math.floor(Math.random() * 5000);
+            if(stayAtFirst >0){
+              tempansPathStayTime[0] = stayAtFirst;
+            }
+            stayAtFirst = -1
+            tempansPathStayTime[tempansPathStayTime.length - 1] = tempstayTime;
+            tempStartTime  = new Date(
+            Date.parse(templastTime) + (tempstayTime / 4) * 6 * 1000);
+            tempStartPosition = tempEndPosition
+            templastClass = "library"
+            secondPath.push(tempansPath)
+            secondPathTimeLine.push(tempansPathTimeLine)
+            secondPathStayTime.push(tempansPathStayTime)
+            secondPathStatus.push(tempansPathStatus)
+          }else if (random>4 ){ //entertainmentPositions
+            tempEndPosition = this.entertainmentPositions[
+              Math.floor(Math.random() * this.entertainmentPositions.length)
+            ];
+          var tempspeed = 0;
+          if (this.getDistanceWithLL(tempStartPosition, tempEndPosition) > 3000) {
+            if (Math.random() * 10 > 4) {
+              tempspeed = 5;
+            }
+          }
+          var [
+              tempansPath,
+              tempansPathTimeLine,
+              tempansPathStayTime,
+              tempansPathStatus,
+              templastTime,
+            ] = await this.getPathWithTimelineAndStay(
+              tempStartPosition,
+              tempEndPosition,
+              tempStartTime,
+              tempspeed,
+              templastClass,
+              "entertainment"
+            )
+            var tempstayTime = Math.floor(Math.random() * 5000);
+            tempansPathStayTime[tempansPathStayTime.length - 1] = tempstayTime;
+            tempStartTime  = new Date(
+            Date.parse(templastTime) + (tempstayTime / 4) * 6 * 1000);
+            tempStartPosition = tempEndPosition
+            templastClass = "entertainment"
+            secondPath.push(tempansPath)
+            secondPathTimeLine.push(tempansPathTimeLine)
+            secondPathStayTime.push(tempansPathStayTime)
+            secondPathStatus.push(tempansPathStatus)
+          }else{
+              tempEndPosition = this.EatingPositions[
+              Math.floor(Math.random() * this.EatingPositions.length)
+            ];
+          var tempspeed = 0;
+          if (this.getDistanceWithLL(tempStartPosition, tempEndPosition) > 3000) {
+            if (Math.random() * 10 >4) {
+              tempspeed = 5;
+            }
+          }
+          var [
+              tempansPath,
+              tempansPathTimeLine,
+              tempansPathStayTime,
+              tempansPathStatus,
+              templastTime,
+            ] = await this.getPathWithTimelineAndStay(
+              tempStartPosition,
+              tempEndPosition,
+              tempStartTime,
+              tempspeed,
+              templastClass,
+              "eating"
+            )
+            var tempstayTime = Math.floor(Math.random() * 3500);
+            tempansPathStayTime[tempansPathStayTime.length - 1] = tempstayTime;
+            tempStartTime  = new Date(
+            Date.parse(templastTime) + (tempstayTime / 4) * 6 * 1000);
+            tempStartPosition = tempEndPosition
+            templastClass = "eating"
+            secondPath.push(tempansPath)
+            secondPathTimeLine.push(tempansPathTimeLine)
+            secondPathStayTime.push(tempansPathStayTime)
+            secondPathStatus.push(tempansPathStatus)
+          }
+          isNext = Math.random() * 10
+        }
+        tempEndPosition = randomHome
+          var tempspeed = 0;
+          if (this.getDistanceWithLL(tempStartPosition, tempEndPosition) > 3000) {
+            if (Math.random() * 10 > 8) {
+              tempspeed = 5;
+            }
+          }
+          var [
+              tempansPath,
+              tempansPathTimeLine,
+              tempansPathStayTime,
+              tempansPathStatus,
+              templastTime,
+            ] = await this.getPathWithTimelineAndStay(
+              tempStartPosition,
+              tempEndPosition,
+              tempStartTime,
+              tempspeed,
+              templastClass,
+              "home"
+            )
+            secondPath.push(tempansPath)
+            secondPathTimeLine.push(tempansPathTimeLine)
+            secondPathStayTime.push(tempansPathStayTime)
+            secondPathStatus.push(tempansPathStatus)
+            var tempstayTime = Math.floor(Math.random() * 3000);
+            tempStartTime  = new Date(
+            Date.parse(templastTime) + (tempstayTime / 4) * 6 * 1000);
+            tempStartPosition = tempEndPosition
+            templastClass = "home"
+        var allTempPath = [],
+            allTimeline = [],
+            allStayTime = [],
+            allStatus = [];
+          for(let i = 0;i<secondPath.length;i++){
+            allTempPath.push(...secondPath[i])
+          }
+          for(let i = 0;i<secondPathTimeLine.length;i++){
+            allTimeline.push(secondPathTimeLine[i])
+          }
+          for(let i = 0;i<secondPathStayTime.length;i++){
+            allStayTime.push(...secondPathStayTime[i])
+          }
+          for(let i = 0;i<secondPathStatus.length;i++){
+            allStatus.push(...secondPathStatus[i])
+          }
+          this.longPath.push(allTempPath);
+          this.peopleMoveTime.push(allTimeline);
+          this.peopleMoveStay.push(allStayTime);
+          this.peopleMoveStatus.push(allStatus);
       }
     },
     getRandomAttribute(type) {
