@@ -1120,11 +1120,20 @@ export default {
                         this.peopleGra[j].geometry.latitude) *
                         (this.peopleGra[i].geometry.latitude -
                           this.peopleGra[j].geometry.latitude)
-                  ) &&
-                Math.floor(Math.random() * 30) >= 10 // 用以减慢传染速度
+                  ) 
+                // 用以减慢传染速度
               ) {
+                let randVal = 25
+               if(this.peopleAttributes[i].isMask == 0){
+                 randVal-=5
+               }
+               if(this.peopleAttributes[i].HealthStatus == 0){
+                 randVal-=10
+               }
+               if(Math.floor(Math.random() * 30) >= randVal){
                 this.peopleMove[j].stat++;
                 console.log("增加了传染者" + this.peopleMove[j].stat);
+               }
               }
             }
           }
