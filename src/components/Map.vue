@@ -942,6 +942,24 @@ export default {
           //   color: [R, G, B],
           //   width: 3,
           // };
+         var tempAttribute = tempthis.peopleAttributes[i]
+         let ismask,health,sex
+         if(tempAttribute.isMask ==1){
+            ismask="佩戴了口罩"
+         }else{
+           ismask="没有佩戴口罩"
+         }
+         if(tempAttribute.HealthStatus == 1){
+           health="健康状况良好"
+         }else{
+           health="健康状态不佳"
+         }
+         if(tempAttribute.Sex == 0){
+           sex = "女性"
+         }else{
+           sex ="男性"
+         }
+         let tempText = "此人是一名" + tempAttribute.Profession+ "，此人" + ismask+ ",年龄是" + tempAttribute.Age + "，此人的性别是" + sex + "，此人的" +health
           var simpleLineSymbolA = null;
           if (i == 0) {
             simpleLineSymbolA = {
@@ -965,8 +983,8 @@ export default {
             content: "{Description}",
           };
           const attributes = {
-            Name: "这是第" + i + "个",
-            Description: "TODO:详细信息",
+            Name: "这是第" + i + "个路径",
+            Description: tempText,
           };
           const polylineGraphic = new Graphic({
             geometry: polyline,
@@ -985,6 +1003,7 @@ export default {
         console.log(tempthis.peopleMoveStay);
         console.log(tempthis.peopleMoveTime);
         console.log(tempthis.peopleMoveStatus);
+        console.log(tempthis.peopleAttributes)
         //         tempthis.initAllPoints();
         // tempthis.updateGraphic();
       };
@@ -1087,10 +1106,11 @@ export default {
     updateStatus() {
       for (let i = 0; i < this.longPath.length; i++) {
         for (let j = 1; j < this.longPath.length; j++) {
-          if (this.peopleMove[i].stat >= 3 && this.peopleMove[j].stat < 3) {
+          if(this.peopleMoveStatus[i][this.peopleMove[i].start] == 1){
+            if (this.peopleMove[i].stat >= 3 && this.peopleMove[j].stat < 3) {
             if (i != j) {
               if (
-                0.002 >=
+                0.001 >=
                   Math.sqrt(
                     (this.peopleGra[i].geometry.longitude -
                       this.peopleGra[j].geometry.longitude) *
@@ -1101,13 +1121,15 @@ export default {
                         (this.peopleGra[i].geometry.latitude -
                           this.peopleGra[j].geometry.latitude)
                   ) &&
-                Math.floor(Math.random() * 30) >= 22 // 用以减慢传染速度
+                Math.floor(Math.random() * 30) >= 10 // 用以减慢传染速度
               ) {
                 this.peopleMove[j].stat++;
                 console.log("增加了传染者" + this.peopleMove[j].stat);
               }
             }
           }
+          }
+
         }
       }
     },
@@ -1453,7 +1475,7 @@ export default {
       var anspath = tempPath;
       var anstimeline = tempPathTimeline;
       var ansstaytime = this.getStayTimeWithPath(tempPath, speed);
-      var ansStatus = this.getStatusWithPath(tempPath, startClass, endClass);
+      var ansStatus = this.getStatusWithPath(tempPath, startClass, endClass,speed);
       return [anspath, anstimeline, ansstaytime, ansStatus, lastTime];
     },
     getStatusWithWord(word) {
@@ -1476,10 +1498,16 @@ export default {
         return 0
       }
     },
-    getStatusWithPath(path, startClass, endClass) {
+    getStatusWithPath(path, startClass, endClass,speed) {
       var ansStatus = [];
+      var actionVal
+      if(speed == 5){
+        actionVal = 2 //开车
+      }else{
+        actionVal = 1 //步行
+      }
       for (var i = 0; i < path.length; i++) {
-        ansStatus.push(1);
+        ansStatus.push(actionVal);
       }
       var sc, ec;
       sc = this.getStatusWithWord(startClass);
@@ -2019,6 +2047,7 @@ export default {
           this.peopleMoveTime.push(allTimeline);
           this.peopleMoveStay.push(allStayTime);
           this.peopleMoveStatus.push(allStatus);
+          this.peopleAttributes.push(this.getRandomAttribute("B"))
       } else if (parttern == "C") {
         console.log("C!!!")
         this.peopleInformation.push("C")
@@ -2240,6 +2269,7 @@ export default {
           this.peopleMoveTime.push(allTimeline);
           this.peopleMoveStay.push(allStayTime);
           this.peopleMoveStatus.push(allStatus);
+          this.peopleAttributes.push(this.getRandomAttribute("C"))
       } else {
         console.log("D!!!")
          this.peopleInformation.push("D")
@@ -2425,41 +2455,104 @@ export default {
           this.peopleMoveTime.push(allTimeline);
           this.peopleMoveStay.push(allStayTime);
           this.peopleMoveStatus.push(allStatus);
+          this.peopleAttributes.push(this.getRandomAttribute("D"))
       }
     },
     getRandomAttribute(type) {
-      var Mask, s, a, p, h;
-      if (type == "A") {
-        if (Math.random() * 10 > 2) {
-          Mask = 1;
-        } else {
-          Mask = 0;
+      var mask,sex,age,profession,health
+      if(type == "A"){
+        if(Math.random() * 10 > 2){
+          mask = 1
+        }else{
+          mask = 0
         }
-        if (Math.random() * 10 > 4) {
-          s = 0;
-        } else {
-          s = 1;
+        if(Math.random() * 10 > 4){
+          sex = 0
+        }else{
+          sex = 1
         }
-        a = Math.floor(Math.random() * 60);
-        if (a < 18) {
-          a += 18;
+        age =Math.floor(Math.random() * 60)
+        if(age < 19){
+          age +=19
         }
-        p = "work";
-        if (Math.random() * 10 > 2) {
-          h = 0;
-        } else {
-          h = 1;
+        profession = "工人"
+        if(Math.random() * 10 > 3){
+          health = 1
+        }else{
+          health = 0
+        }
+      }else if(type =="B"){
+        if(Math.random() * 10 > 3){
+          mask = 1
+        }else{
+          mask = 0
+        }
+        if(Math.random() * 10 >5 ){
+          sex = 0
+        }else{
+          sex = 1
+        }
+        age =Math.floor( Math.random() * 20)
+        if(age < 7){
+          age +=7
+        }
+        profession = "学生"
+        if(Math.random() * 10 > 2){
+          health = 1
+        }else{
+          health = 0
+        }
+      }else if(type == "C"){
+        if(Math.random() * 10 > 5){
+          mask = 1
+        }else{
+          mask = 0
+        }
+        if(Math.random() * 10 >5 ){
+          sex = 0
+        }else{
+          sex = 1
+        }
+        age =Math.floor(Math.random() * 80)
+        if(age < 45){
+          age +=45
+        }
+        profession = "退休者"
+        if(Math.random() * 10 >5 ){
+          health = 1
+        }else{
+          health = 0
+        }
+      }else if(type == "D"){
+        if(Math.random() * 10 > 6){
+          mask = 1
+        }else{
+          mask = 0
+        }
+        if(Math.random() * 10 >5 ){
+          sex = 0
+        }else{
+          sex = 1
+        }
+        age = Math.floor(Math.random() * 66)
+        if(age < 15){
+          age +=15
+        }
+        profession = "乱走人"
+        if(Math.random() * 10 > 4){
+          health = 1
+        }else{
+          health = 0
         }
       }
-
-      var peopleAttribute = {
-        isMask: Mask,
-        sex: s,
-        age: a,
-        profession: p,
-        healthStatus: h,
-      };
-      return peopleAttribute;
+      var peopleAttribute ={
+          isMask : mask,
+          Sex : sex,
+          Age: age,
+          Profession: profession,
+          HealthStatus: health
+        }
+      return peopleAttribute
     },
     async sendRequest(start, end) {
       var temppaths = new Array();
