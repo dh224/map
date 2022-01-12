@@ -898,7 +898,7 @@ export default {
       this.view.ui.add(disPathBtn, "top-right");
       this.view.ui.add(getPathBtn, "top-right");
 
-      getPathBtn.onclick = function () {
+      getPathBtn.onclick = function () {//随机生成行为模式
         var t = Math.random()* 10
         if(t > 6){
           tempthis.getPathWithParttern("A");
@@ -944,7 +944,7 @@ export default {
           // };
          var tempAttribute = tempthis.peopleAttributes[i]
          let ismask,health,sex
-         if(tempAttribute.isMask ==1){
+         if(tempAttribute.isMask ==1){ //显示当前轨迹所代表的人员的信息
             ismask="佩戴了口罩"
          }else{
            ismask="没有佩戴口罩"
@@ -1047,7 +1047,7 @@ export default {
       // );
       map.add(this.moveLayer);
     },
-    initAllPoints() {
+    initAllPoints() {//初始化所有点，为longPath中的每条路径生成初始位置以及其对应的信息
       for (let i = 0; i < this.longPath.length; i++) {
         if (i == 0) {
           this.peopleMove.push({
@@ -1092,7 +1092,7 @@ export default {
       }
       console.log(this.peopleMove);
     },
-    updateGraphic() {
+    updateGraphic() { //整个动画的行为逻辑:移除之前所有的点，更新所有点的信息，更新所有点的状态，重新绘制所有的点
       this.moving = setInterval(() => {
         this.moveLayer.removeAll();
         // console.log(this.peopleGra[0].geometry.latitude)
@@ -1103,7 +1103,7 @@ export default {
         }
       }, 25);
     },
-    updateStatus() {
+    updateStatus() {//大致逻辑，需要分别判断是否是最高等级的密接（才有传染力），交通工具是否为步行，以及根据不同的属性来设置感染的概率
       for (let i = 0; i < this.longPath.length; i++) {
         for (let j = 1; j < this.longPath.length; j++) {
           if(this.peopleMoveStatus[i][this.peopleMove[i].start] == 1){
@@ -1128,9 +1128,9 @@ export default {
                  randVal-=5
                }
                if(this.peopleAttributes[i].HealthStatus == 0){
-                 randVal-=10
+                 randVal-=15
                }
-               if(Math.floor(Math.random() * 30) >= randVal){
+               if(Math.floor(Math.random() * 35) >= randVal){
                 this.peopleMove[j].stat++;
                 console.log("增加了传染者" + this.peopleMove[j].stat);
                }
